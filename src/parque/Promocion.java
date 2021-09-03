@@ -48,13 +48,22 @@ public abstract class Promocion implements Oferta {
     }
 
     @Override
-    public boolean contieneAtraccion(Atraccion atraccion){
+    public boolean contieneAtraccion(Atraccion atraccion) {
         return atracciones.contains(atraccion);
     }
 
     @Override
     public boolean esPromocion() {
         return true;
+    }
+
+    @Override
+    public boolean serComprada() {
+        if (getCupo() > 0) {
+            for (Atraccion atraccion : atracciones) atraccion.serComprada();
+            return true;
+        }
+        return false;
     }
 
     @Override

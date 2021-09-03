@@ -18,10 +18,6 @@ public class Atraccion implements Oferta {
         this.cupo = cupo;
     }
 
-    public void serComprada() {
-        this.cupo--;
-    }
-
     @Override
     public double getCosto() {
         return this.costoVisita;
@@ -54,6 +50,15 @@ public class Atraccion implements Oferta {
 
     @Override
     public boolean esPromocion() {
+        return false;
+    }
+
+    @Override
+    public boolean serComprada() {
+        if (this.cupo > 0) {
+            this.cupo--;
+            return true;
+        }
         return false;
     }
 
