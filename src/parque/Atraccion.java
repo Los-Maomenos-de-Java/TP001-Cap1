@@ -54,6 +54,11 @@ public class Atraccion implements Oferta {
     }
 
     @Override
+    public boolean tieneCupo() {
+        return this.cupo > 0;
+    }
+
+    @Override
     public boolean serComprada() {
         if (this.cupo > 0) {
             this.cupo--;

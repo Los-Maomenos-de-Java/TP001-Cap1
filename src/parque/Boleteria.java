@@ -16,7 +16,7 @@ public class Boleteria {
     public List<Oferta> ofertasFiltradasYOrdenadas(Usuario usuario) {
         return ofertas
                 .stream()
-                .filter(oferta -> oferta.getCupo() > 0)
+                .filter(Oferta::tieneCupo)
                 .filter(usuario::puedeVisitar)
                 .filter(oferta -> !usuario.comproLaAtraccion(oferta))
                 .sorted(Comparator.comparing(usuario::esDelTipoQueLeGusta)

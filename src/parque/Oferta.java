@@ -10,5 +10,6 @@ public interface Oferta {
     List<Atraccion> getAtracciones();
     boolean contieneAtraccion(Atraccion o);
     boolean esPromocion();
+    boolean tieneCupo();
     boolean serComprada();
 }

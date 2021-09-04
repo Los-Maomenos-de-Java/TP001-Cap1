@@ -1,5 +1,7 @@
 package parque;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Boleteria boleteria = new Boleteria();
