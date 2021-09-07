@@ -55,23 +55,19 @@ public class ManejadorDeArchivos {
 		return atracciones;
 	}
 
-	public static Usuario[] leerUsuarios() {
+	public static List<Usuario> leerUsuarios() {
 
 		File archivo = null;
 		FileReader fr = null;
 		BufferedReader br = null;
 
-		Usuario[] usuarios = null;
+		List<Usuario> usuarios = new ArrayList<>();
 
 		try {
 			archivo = new File("Archivos/Usuarios.txt");
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 
-			int cantidad = Integer.parseInt(br.readLine());
-			usuarios = new Usuario[cantidad];
-
-			int indice = 0;
 			String linea = br.readLine();
 			while (linea != null) {
 				String[] datosUsuario = linea.split(",");
@@ -81,9 +77,8 @@ public class ManejadorDeArchivos {
 				double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
 				TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[4]);
 
-				usuarios[indice++] = new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida);
+				usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
 				linea = br.readLine();
-
 			}
 			return usuarios;
 
