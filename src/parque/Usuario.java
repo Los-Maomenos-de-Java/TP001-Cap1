@@ -21,7 +21,6 @@ public class Usuario {
     public void comprarAtraccion(Oferta o) {
         presupuesto -= o.getCosto();
         tiempoDisponible -= o.getTiempo();
-        o.serComprada();
         ofertasCompradas.add(o);
     }
 
@@ -37,6 +36,22 @@ public class Usuario {
         return getAtraccionesCompradas()
                 .stream()
                 .anyMatch(oferta::contieneAtraccion);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPresupuesto() {
+        return presupuesto;
+    }
+
+    public double getTiempoDisponible() {
+        return tiempoDisponible;
+    }
+
+    public TipoDeAtraccion getTipoDeAtraccionPreferida() {
+        return this.tipoDeAtraccionPreferida;
     }
 
     public List<Atraccion> getAtraccionesCompradas() {
