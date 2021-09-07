@@ -5,6 +5,11 @@ import java.util.List;
 
 public abstract class Promocion implements Oferta {
     protected List<Atraccion> atracciones = new ArrayList<>();
+    private String nombre;
+    
+    public Promocion(String nombre) {
+    	this.nombre = nombre;
+    }
 
     protected void agregarAtraccion(Atraccion a) {
         atracciones.add(a);
@@ -16,7 +21,12 @@ public abstract class Promocion implements Oferta {
                 .mapToDouble(Atraccion::getCosto)
                 .sum();
     }
-
+    
+    @Override
+    public String getNombre() {
+    	return this.nombre;
+    }
+    
     @Override
     public double getTiempo() {
         return atracciones
@@ -40,36 +50,21 @@ public abstract class Promocion implements Oferta {
                 .stream()
                 .map(Oferta::getTipo)
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("La promociÃ³n no contiene atracciones"));
+                .orElseThrow(() -> new RuntimeException("La promoción no contiene atracciones"));
     }
 
-    @Override
     public List<Atraccion> getAtracciones() {
         return this.atracciones;
     }
 
     @Override
-    public boolean contieneAtraccion(Atraccion atraccion) {
+    public boolean contieneAtraccion(Atraccion atraccion){
         return atracciones.contains(atraccion);
     }
 
     @Override
     public boolean esPromocion() {
         return true;
-    }
-
-    @Override
-    public boolean tieneCupo(){
-        return this.getCupo() > 0;
-    }
-
-    @Override
-    public boolean serComprada() {
-        if (getCupo() > 0) {
-            for (Atraccion atraccion : atracciones) atraccion.serComprada();
-            return true;
-        }
-        return false;
     }
 
     @Override

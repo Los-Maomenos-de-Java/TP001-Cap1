@@ -3,7 +3,8 @@ package parque;
 public class PromocionPorcentual extends Promocion {
     private double porcentajeDescuento;
 
-    public PromocionPorcentual(int porcentajeDescuento) {
+    public PromocionPorcentual(String nombre, int porcentajeDescuento) {
+    	super(nombre);
         this.porcentajeDescuento = porcentajeDescuento;
     }
 

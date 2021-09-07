@@ -3,6 +3,7 @@ package parque;
 import java.util.List;
 
 public interface Oferta {
+	String getNombre();
     double getCosto();
     double getTiempo();
     int getCupo();
@@ -10,6 +11,4 @@ public interface Oferta {
     List<Atraccion> getAtracciones();
     boolean contieneAtraccion(Atraccion o);
     boolean esPromocion();
-    boolean tieneCupo();
-    boolean serComprada();
 }
