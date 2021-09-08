@@ -1,11 +1,13 @@
 package parque;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ManejadorDeArchivos {
 
@@ -157,5 +159,59 @@ public class ManejadorDeArchivos {
             }
         }
         return promociones;
+    }
+
+    public static void generarTicket(Usuario usuario, List<Oferta> ofertasCompradas) throws IOException {
+        File nuevoTicket = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones" +
+                "/TP001-Cap1/resources/" + usuario.getNombre() + ".txt");
+
+        PrintWriter salida = new PrintWriter(new FileWriter("/Volumes/HP P500/Programación/Java/ParqueDiversiones" +
+                "/TP001-Cap1/resources/" + usuario.getNombre() + ".txt"));
+
+        nuevoTicket.createNewFile();
+
+        var fecha = new Date();
+        var fechaFormateada = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss").format(fecha);
+
+        salida.println("\uD83D\uDCC5 " + fechaFormateada);
+        salida.println("\n\n\t\tRESUMEN DE COMPRA DE " + usuario.getNombre().toUpperCase() + ":");
+
+        salida.println("---------------------------------------------------------------");
+
+        salida.printf("|%-30.30s |%-10.10s |%-10.10s|%n", "Atracciones", "Costo", "Tiempo");
+
+        ofertasCompradas
+                .stream()
+                .filter(Oferta::esPromocion)
+                .forEach(promocion -> {
+                    salida.printf("|%-30.30s |%-10.10s |%-10.10s|%n",
+                            "- " + promocion.getNombre(),
+                            "$" + promocion.getCosto(),
+                            "⏱ " + promocion.getTiempo());
+                    promocion.getAtracciones().forEach(atraccion -> salida.printf("%-30.30s %-10.10s %-10.10s%n",
+                            "\t-" + atraccion.getNombre()
+                            , atraccion.getCosto(), ""));
+                    salida.printf("%-30.30s %-10.10s %-10.10s%n",
+                            "\t-Descuento",
+                            promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum(),
+                            "\n");
+                });
+
+        ofertasCompradas
+                .stream()
+                .filter(oferta -> !oferta.esPromocion())
+                .map(atraccion -> salida.printf("|%-30.30s |%-10.10s |%-10.10s|%n",
+                        "- " + atraccion.getNombre(),
+                        "$" + atraccion.getCosto(),
+                        "⏱ " + atraccion.getTiempo() + "\n"))
+                .collect(Collectors.toList());
+
+        salida.println("---------------------------------------------------------------");
+
+        var costoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getCosto).sum();
+        var tiempoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getTiempo).sum();
+
+        salida.println("\n" + "COSTO TOTAL: $" + costoTotal + "\n" + "TIEMPO REQUERIDO: " + tiempoTotal);
+        salida.close();
     }
 }

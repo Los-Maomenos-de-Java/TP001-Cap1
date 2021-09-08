@@ -1,5 +1,6 @@
 package parque;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -55,11 +56,6 @@ public class Vendedor {
         return false;
     }
 
-    public List<Atraccion> getAtraccionesVendidas() {
-        Itinerario vendido = new Itinerario(this.ofertasVendidas);
-        return vendido.getAtracciones();
-    }
-
     public void mostrarItinerario() {
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------");
@@ -68,15 +64,14 @@ public class Vendedor {
         System.out.println(vendido);
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------");
-        System.out.println("Presioná Enter para continuar");
+        System.out.println("\nPresioná Enter para continuar");
         scan.nextLine();
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------");
     }
 
-    // TODO Escritura itinerario
-    public void generarTicket(Usuario usuario) {
-        // usa el gestor de archivos para generar el Ticket
+    public void generarTicket(Usuario usuario) throws IOException {
+        ManejadorDeArchivos.generarTicket(usuario, ofertasVendidas);
         this.ofertasVendidas.clear();
     }
 }

@@ -1,5 +1,6 @@
 package parque;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class Boleteria {
     }
 
     private Queue<Oferta> ofertasOrdenadasPara(Usuario usuario) {
+        this.ofertasParaUsuario.clear();
         this.ofertasParaUsuario.addAll(ofertas);
         ofertasParaUsuario =
                 ofertasParaUsuario
@@ -42,7 +44,7 @@ public class Boleteria {
         return ofertasParaUsuario;
     }
 
-    public void ofrecerA(Usuario usuario) {
+    public void ofrecerA(Usuario usuario) throws IOException {
         this.ofertasOrdenadasPara(usuario);
         this.vendedor.iniciarVenta(usuario);
 

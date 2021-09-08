@@ -1,0 +1,31 @@
+📅 Wed, 08 Sep 2021 14:01:30
+
+
+		RESUMEN DE COMPRA DE EOWYN:
+---------------------------------------------------------------
+|Atracciones                    |Costo      |Tiempo    |
+|- Promocion 2                  |$13.0      |⏱ 9.0     |
+	-Moria                        10.0                 
+	-Mordor                       25.0                 
+	-Bosque Negro                 3.0                  
+	-Descuento                    -25.0                
+|- Promocion 3                  |$18.0      |⏱ 7.5     |
+	-La Comarca                   3.0                  
+	-Lothlarien                   35.0                 
+	-Descuento                    -20.0                
+|- Promocion 1                  |$8.5       |⏱ 5.5     |
+	-Minas Tirith                 5.0                  
+	-Erebor                       12.0                 
+	-Descuento                    -8.5                 
+|- Mordor                       |$25.0      |⏱ 3.0     |
+|- Moria                        |$10.0      |⏱ 2.0     |
+|- Bosque Negro                 |$3.0       |⏱ 4.0     |
+|- Lothlarien                   |$35.0      |⏱ 1.0     |
+|- Erebor                       |$12.0      |⏱ 3.0     |
+|- Minas Tirith                 |$5.0       |⏱ 2.5     |
+|- Abismo de Helm               |$5.0       |⏱ 2.0     |
+|- La Comarca                   |$3.0       |⏱ 6.5     |
+---------------------------------------------------------------
+
+COSTO TOTAL: $137.5
+TIEMPO REQUERIDO: 46.0

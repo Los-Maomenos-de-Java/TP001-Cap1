@@ -20,10 +20,6 @@ public class Itinerario {
         this.tiempoTotal += oferta.getTiempo();
     }
 
-    public List<Atraccion> getAtracciones() {
-        return this.atracciones;
-    }
-
     @Override
     public String toString() {
         StringBuilder itinerario = new StringBuilder("ATRACCIONES COMPRADAS: " + "\n");

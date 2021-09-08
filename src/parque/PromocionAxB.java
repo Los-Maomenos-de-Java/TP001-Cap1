@@ -5,24 +5,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PromocionAxB extends Promocion {
-    private List<Atraccion> atraccionesGratis;
+    private List<String> atraccionesGratis;
 
     public PromocionAxB(String nombre, String[] atraccionesGratis) {
         super(nombre);
-        var listaAtraccionesGratis = Arrays.asList(atraccionesGratis);
-        this.atraccionesGratis = this.atracciones
-                .stream()
-                .filter(atraccion -> listaAtraccionesGratis.contains(atraccion.getNombre()))
+        this.atraccionesGratis = Arrays.stream(atraccionesGratis)
+                .map(String::toLowerCase)
                 .collect(Collectors.toList());
     }
 
     @Override
     public double getCosto() {
-        var costoAtraccionesGratis = atraccionesGratis
+        return atracciones
                 .stream()
-                .mapToDouble(Atraccion::getCosto)
-                .sum();
-
-        return costoTotalAtracciones() - costoAtraccionesGratis;
+                .filter(atraccion -> !atraccionesGratis.contains(atraccion.getNombre().toLowerCase()))
+                .mapToDouble(Atraccion::getCosto).sum();
     }
 }
