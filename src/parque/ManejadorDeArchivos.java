@@ -9,175 +9,153 @@ import java.util.List;
 
 public class ManejadorDeArchivos {
 
-	public static List<Oferta> leerAtracciones() {
+    public static List<Oferta> leerAtracciones() {
+        File archivo;
+        BufferedReader br;
+        FileReader fr = null;
 
-		File archivo = null;
-		FileReader fr = null;
-		BufferedReader br = null;
+        List<Oferta> atracciones = new ArrayList<>();
 
-		List<Oferta> atracciones = new ArrayList<>();
+        try {
+            archivo = new File("Archivos/Atracciones.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-		try {
-			archivo = new File("Archivos/Atracciones.txt");
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
+            String linea = br.readLine();
+            while (linea != null) {
+                String[] datosAtraccion = linea.split(",");
 
-			String linea = br.readLine();
-			while (linea != null) {
-				String[] datosAtraccion = linea.split(",");
+                String nombre = datosAtraccion[0];
+                double costoVisita = Double.parseDouble(datosAtraccion[1]);
+                double tiempoPromedio = Double.parseDouble(datosAtraccion[2]);
+                int cupo = Integer.parseInt(datosAtraccion[3]);
+                TipoDeAtraccion tipoAtraccion = TipoDeAtraccion.valueOf(datosAtraccion[4]);
 
-				String nombre = datosAtraccion[0];
-				double costoVisita = Double.parseDouble(datosAtraccion[1]);
-				double tiempoPromedio = Double.parseDouble(datosAtraccion[2]);
-				int cupo = Integer.parseInt(datosAtraccion[3]);
-				TipoDeAtraccion tipoAtraccion = TipoDeAtraccion.valueOf(datosAtraccion[4]);
+                atracciones.add(new Atraccion(nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo));
+                linea = br.readLine();
+            }
+            return atracciones;
 
-				atracciones.add(new Atraccion(nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo));
-				linea = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return atracciones;
+    }
 
-			}
-			return atracciones;
+    public static List<Usuario> leerUsuarios() {
+        File archivo;
+        FileReader fr = null;
+        BufferedReader br;
 
-		} catch (IOException e) {
-			e.printStackTrace();
+        List<Usuario> usuarios = new ArrayList<>();
 
-		} finally {
+        try {
+            archivo = new File("Archivos/Usuarios.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
+            String linea = br.readLine();
+            while (linea != null) {
+                String[] datosUsuario = linea.split(",");
 
-		return atracciones;
-	}
+                String nombre = datosUsuario[0];
+                double presupuesto = Integer.parseInt(datosUsuario[1]);
+                double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
+                TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[4]);
 
-	public static List<Usuario> leerUsuarios() {
+                usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
+                linea = br.readLine();
+            }
+            return usuarios;
 
-		File archivo = null;
-		FileReader fr = null;
-		BufferedReader br = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return usuarios;
+    }
 
-		List<Usuario> usuarios = new ArrayList<>();
+    public static List<Oferta> leerPromociones() {
+        File archivo;
+        FileReader fr = null;
+        BufferedReader br;
 
-		try {
-			archivo = new File("Archivos/Usuarios.txt");
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
+        List<Oferta> promociones = new ArrayList<>();
 
-			String linea = br.readLine();
-			while (linea != null) {
-				String[] datosUsuario = linea.split(",");
+        try {
+            archivo = new File("Archivos/Promociones.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-				String nombre = datosUsuario[0];
-				double presupuesto = Integer.parseInt(datosUsuario[1]);
-				double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
-				TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[4]);
+            String linea = br.readLine();
+            while (linea != null) {
+                String[] datosPromocion = linea.split(",");
 
-				usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
-				linea = br.readLine();
-			}
-			return usuarios;
+                String nombre = datosPromocion[0];
+                String tipoPromocion = datosPromocion[1];
+                String[] atraccionesString = datosPromocion[2].split("-");
+                Atraccion[] atracciones = new Atraccion[atraccionesString.length];
+                double descuentoAbsoluto;
+                String[] atraccionesGratisString;
+                for (int i = 0; i < atraccionesString.length; i++) {
+                    atracciones[i] = Boleteria.obtenerAtraccionPorNombre(atraccionesString[i]);
+                }
+                int descuentoPorcentual = 0;
 
-		} catch (IOException e) {
-			e.printStackTrace();
+                if (tipoPromocion.equals("PromocionAbsoluta")) {
+                    descuentoAbsoluto = Integer.parseInt(datosPromocion[3]);
+                    Promocion promocionAAgregar = new PromocionAbsoluta(nombre, descuentoAbsoluto);
+                    for (Atraccion atraccion : atracciones) {
+                        promocionAAgregar.agregarAtraccion(atraccion);
+                    }
+                    promociones.add(promocionAAgregar);
+                }
 
-		} finally {
-
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-		return usuarios;
-
-	}
-
-	public static List<Oferta> leerPromociones() {
-
-		File archivo = null;
-		FileReader fr = null;
-		BufferedReader br = null;
-
-		List<Oferta> promociones = new ArrayList<>();
-
-		try {
-			archivo = new File("Archivos/Promociones.txt");
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
-
-			int indice = 0;
-			String linea = br.readLine();
-			while (linea != null) {
-				String[] datosPromocion = linea.split(",");
-
-				String nombre = datosPromocion[0];
-				String tipoPromocion = datosPromocion[1];
-				String[] atraccionesString = datosPromocion[2].split("-");
-				Atraccion[] atracciones = new Atraccion[atraccionesString.length];
-				double descuentoAbsoluto = 0;
-				String[] atraccionesGratisString = null;
-				for (int i = 0; i < atraccionesString.length; i++) {
-					atracciones[i] = Boleteria.obtenerAtraccionPorNombre(atraccionesString[i]);
-				}
-				int descuentoPorcentual = 0;
-				
-				if (tipoPromocion.equals("PromocionAbsoluta")) {
-					descuentoAbsoluto = Integer.parseInt(datosPromocion[3]);
-					Promocion promocionAAgregar = new PromocionAbsoluta(nombre,descuentoAbsoluto);
-					for (int i = 0; i < atracciones.length; i++) {
-						promocionAAgregar.agregarAtraccion(atracciones[i]);
-					}
-					promociones.add(promocionAAgregar);
-				}
-				
-				if (tipoPromocion.equals("PromocionAxB")) {
-					atraccionesGratisString = datosPromocion[3].split("-");
-					Promocion promocionAAgregar = new PromocionAxB(nombre,atraccionesGratisString);
-					for (int i = 0; i < atracciones.length; i++) {
-						promocionAAgregar.agregarAtraccion(atracciones[i]);
-					}
-					promociones.add(promocionAAgregar);
-
-				}
-
-				if (tipoPromocion.equals( "PromocionPorcentual")) {
-					descuentoPorcentual = Integer.parseInt(datosPromocion[3]);
-					Promocion promocionAAgregar = new PromocionPorcentual(nombre,descuentoPorcentual);
-					for (int i = 0; i < atracciones.length; i++) {
-						promocionAAgregar.agregarAtraccion(atracciones[i]);
-					}
-					promociones.add(promocionAAgregar);
-				}
-
-				linea = br.readLine();
-
-			}
-			return promociones;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-
-		} finally {
-
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-		return promociones;
-
-	}
-
+                if (tipoPromocion.equals("PromocionAxB")) {
+                    atraccionesGratisString = datosPromocion[3].split("-");
+                    Promocion promocionAAgregar = new PromocionAxB(nombre, atraccionesGratisString);
+                    for (Atraccion atraccione : atracciones) {
+                        promocionAAgregar.agregarAtraccion(atraccione);
+                    }
+                    promociones.add(promocionAAgregar);
+                }
+                if (tipoPromocion.equals("PromocionPorcentual")) {
+                    descuentoPorcentual = Integer.parseInt(datosPromocion[3]);
+                    Promocion promocionAAgregar = new PromocionPorcentual(nombre, descuentoPorcentual);
+                    for (Atraccion atraccione : atracciones) {
+                        promocionAAgregar.agregarAtraccion(atraccione);
+                    }
+                    promociones.add(promocionAAgregar);
+                }
+                linea = br.readLine();
+            }
+            return promociones;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return promociones;
+    }
 }

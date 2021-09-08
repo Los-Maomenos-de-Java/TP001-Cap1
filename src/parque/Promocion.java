@@ -6,9 +6,9 @@ import java.util.List;
 public abstract class Promocion implements Oferta {
     protected List<Atraccion> atracciones = new ArrayList<>();
     private String nombre;
-    
+
     public Promocion(String nombre) {
-    	this.nombre = nombre;
+        this.nombre = nombre;
     }
 
     protected void agregarAtraccion(Atraccion a) {
@@ -21,12 +21,12 @@ public abstract class Promocion implements Oferta {
                 .mapToDouble(Atraccion::getCosto)
                 .sum();
     }
-    
+
     @Override
     public String getNombre() {
-    	return this.nombre;
+        return this.nombre;
     }
-    
+
     @Override
     public double getTiempo() {
         return atracciones
@@ -50,7 +50,7 @@ public abstract class Promocion implements Oferta {
                 .stream()
                 .map(Oferta::getTipo)
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("La promoción no contiene atracciones"));
+                .orElseThrow(() -> new RuntimeException("La promociï¿½n no contiene atracciones"));
     }
 
     public List<Atraccion> getAtracciones() {
@@ -58,7 +58,7 @@ public abstract class Promocion implements Oferta {
     }
 
     @Override
-    public boolean contieneAtraccion(Atraccion atraccion){
+    public boolean contieneAtraccion(Atraccion atraccion) {
         return atracciones.contains(atraccion);
     }
 

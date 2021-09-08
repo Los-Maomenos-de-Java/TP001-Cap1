@@ -24,7 +24,7 @@ public class Atraccion implements Oferta {
     
     @Override
     public String getNombre() {
-    	return this.nombre;
+        return this.nombre;
     }
 
     @Override

@@ -3,8 +3,8 @@ package parque;
 public class PromocionAbsoluta extends Promocion {
     private double descuentoAbsoluto;
 
-    public PromocionAbsoluta(String nombre,double descuentoAbsoluto) {
-    	super(nombre);
+    public PromocionAbsoluta(String nombre, double descuentoAbsoluto) {
+        super(nombre);
         this.descuentoAbsoluto = descuentoAbsoluto;
     }
 
