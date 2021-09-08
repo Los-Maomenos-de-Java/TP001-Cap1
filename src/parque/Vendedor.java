@@ -11,7 +11,7 @@ public class Vendedor {
 
     public void iniciarVenta(Usuario usuario) {
         // saludar
-        System.out.println("Bienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuesto()
+        System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuesto()
                 + " y " + usuario.getTiempoDisponible() + " horas disponibles\n");
     }
 
@@ -62,9 +62,7 @@ public class Vendedor {
         System.out.println("No tengo nada más para ofrecer.\n\nEste es tu itinerario:");
         Itinerario vendido = new Itinerario(this.ofertasVendidas);
         System.out.println(vendido);
-        System.out.println(
-                "-----------------------------------------------------------------------------------------------------");
-        System.out.println("\nPresioná Enter para continuar");
+        System.out.println("Presioná Enter para continuar");
         scan.nextLine();
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------");

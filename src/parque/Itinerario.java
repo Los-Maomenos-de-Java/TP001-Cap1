@@ -1,7 +1,6 @@
 package parque;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,23 +21,48 @@ public class Itinerario {
 
     @Override
     public String toString() {
-        StringBuilder itinerario = new StringBuilder("ATRACCIONES COMPRADAS: " + "\n");
+        System.out.println("\n\t\tATRACCIONES COMPRADAS: \n");
 
-        var groupedByTipo = atracciones
+        System.out.println("---------------------------------------------------------------");
+        System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n", "Atracciones", "Costo", "Tiempo");
+        System.out.print("\n");
+
+        atracciones
                 .stream()
-                .collect(Collectors.groupingBy(Atraccion::getTipo, LinkedHashMap::new, Collectors.toList()));
+                .filter(Oferta::esPromocion)
+                .forEach(promocion -> {
+                    System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n",
+                            "- " + promocion.getNombre(),
+                            "$" + promocion.getCosto(),
+                            "⏱ " + promocion.getTiempo());
+                    promocion.getAtracciones().forEach(atraccion -> System.out.printf("%-25.25s %-10.10s %-10.10s%n",
+                            "\t-" + atraccion.getNombre()
+                            , "$" + atraccion.getCosto(), ""));
+                    System.out.printf("%-25.25s %-10.10s %-10.10s%n",
+                            "\t-Descuento",
+                            "$" + (promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum()),
+                            "");
+                    System.out.print("\n");
+                });
 
-        var atraccionesAgupadas =
-                groupedByTipo
-                        .entrySet()
-                        .stream()
-                        .map(entry -> "\n-" + entry.getKey() + ": " + "\n\t-" + entry.getValue().stream().map(Atraccion::getNombre)
-                                .collect(Collectors.joining("\n\t-")))
-                        .collect(Collectors.joining("\n"));
+        atracciones
+                .stream()
+                .filter(oferta -> !oferta.esPromocion())
+                .map(atraccion -> System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n%n",
+                        "- " + atraccion.getNombre(),
+                        "$" + atraccion.getCosto(),
+                        "⏱ " + atraccion.getTiempo()))
+                .collect(Collectors.toList());
 
-        itinerario.append(atraccionesAgupadas);
+        System.out.println("---------------------------------------------------------------");
 
-        itinerario.append("\n\n" + "COSTO TOTAL: $ ").append(this.costoTotal).append("\n\nTIEMPO REQUERIDO: ").append(this.tiempoTotal);
-        return itinerario.toString();
+        var costoTotal = atracciones.stream().mapToDouble(Oferta::getCosto).sum();
+        var tiempoTotal = atracciones.stream().mapToDouble(Oferta::getTiempo).sum();
+
+        System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "$" + costoTotal, "⏱ " + tiempoTotal);
+
+        System.out.println("---------------------------------------------------------------");
+
+        return "";
     }
 }
