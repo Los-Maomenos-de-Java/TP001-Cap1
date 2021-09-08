@@ -21,7 +21,7 @@ public class Atraccion implements Oferta {
     public void serComprada() {
         this.cupo--;
     }
-    
+
     @Override
     public String getNombre() {
         return this.nombre;
