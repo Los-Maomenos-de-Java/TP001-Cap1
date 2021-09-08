@@ -1,0 +1,3 @@
+Promocion 1,PromocionPorcentual,Minas Tirith-Erebor,50
+Promocion 2,PromocionAxB,Moria-Mordor-Bosque Negro,Mordor
+Promocion 3,PromocionAbsoluta,La Comarca-Lothlarien,20

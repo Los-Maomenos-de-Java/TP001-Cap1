@@ -1,11 +1,11 @@
 package parque;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Boleteria {
-    private static List<Oferta> ofertas = new ArrayList<>();
-    private List<Oferta> ofertasParaUsuario = new ArrayList<>();
+    public static List<Oferta> ofertas = new ArrayList<>();
+    private Queue<Oferta> ofertasParaUsuario = new ArrayDeque<>();
     private Vendedor vendedor = new Vendedor();
 
     public Boleteria() {
@@ -14,52 +14,45 @@ public class Boleteria {
     }
 
     public static Atraccion obtenerAtraccionPorNombre(String nombre) {
-        for (Oferta oferta : ofertas) {
-            if (!oferta.esPromocion()) {
-                if (oferta.getNombre().equals(nombre)) {
-                    return oferta.getAtracciones().get(0);
-                }
-            }
-        }
-        return null;
+        return ofertas
+                .stream()
+                .filter(oferta -> !oferta.esPromocion())
+                .filter(oferta -> oferta.getNombre().equals(nombre))
+                .findFirst()
+                .map(Oferta::getAtracciones)
+                .filter(list -> !list.isEmpty())
+                .map(atracciones -> atracciones.get(0))
+                .orElse(null);
     }
 
-    private boolean tieneAtraccionVendida(Oferta oferta) {
-        for (Atraccion atraccion : oferta.getAtracciones()) {
-            if (vendedor.getAtraccionesVendidas().contains(atraccion)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private List<Oferta> ofertasOrdenadasPara(Usuario usuario) {
+    private Queue<Oferta> ofertasOrdenadasPara(Usuario usuario) {
         this.ofertasParaUsuario.addAll(ofertas);
-        this.ofertasParaUsuario.sort(new OrdenadorDeOfertas(usuario.getTipoDeAtraccionPreferida()));
-        this.ofertasFiltradasPara(usuario);
-        return this.ofertasParaUsuario;
+        ofertasParaUsuario =
+                ofertasParaUsuario
+                        .stream()
+                        .filter(Oferta::tieneCupo)
+                        .filter(usuario::puedeVisitar)
+                        .filter(oferta -> !usuario.comproLaAtraccion(oferta))
+                        .sorted(Comparator.comparing(usuario::esDelTipoQueLeGusta)
+                                .thenComparing(Oferta::esPromocion)
+                                .thenComparing(Oferta::getCosto)
+                                .thenComparing(Oferta::getTiempo).reversed())
+                        .collect(Collectors.toCollection(ArrayDeque::new));
+
+        return ofertasParaUsuario;
     }
 
-    private List<Oferta> ofertasFiltradasPara(Usuario usuario) {
-        //remover oferta si alguna de las: oferta.Atracciones est� en atraccionesVendidas
-        this.ofertasParaUsuario.removeIf(oferta -> tieneAtraccionVendida(oferta));
-
-        this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCupo() == 0));
-        this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCosto() > usuario.getPresupuesto()));
-        this.ofertasParaUsuario.removeIf(oferta -> (oferta.getTiempo() > usuario.getTiempoDisponible()));
-        return this.ofertasParaUsuario;
-    }
-
-    //TODO que reste cupo cuando se compra una oferta
     public void ofrecerA(Usuario usuario) {
         this.ofertasOrdenadasPara(usuario);
         this.vendedor.iniciarVenta(usuario);
+
         while (!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuesto() > 0 && usuario.getTiempoDisponible() > 0) {
-            Oferta ofertaSugerida = this.ofertasParaUsuario.remove(0);
+            Oferta ofertaSugerida = this.ofertasParaUsuario.peek();
+            ofertasParaUsuario.poll();
             if (this.vendedor.ofrecer(ofertaSugerida)) {
                 usuario.comprarAtraccion(ofertaSugerida);
                 ofertaSugerida.serComprada();
-                this.ofertasFiltradasPara(usuario);
+                this.ofertasOrdenadasPara(usuario);
                 vendedor.continuarVenta(usuario);
             }
         }

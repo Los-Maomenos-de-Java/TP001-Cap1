@@ -17,7 +17,7 @@ public class ManejadorDeArchivos {
         List<Oferta> atracciones = new ArrayList<>();
 
         try {
-            archivo = new File("Archivos/Atracciones.txt");
+            archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/atracciones.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -58,7 +58,7 @@ public class ManejadorDeArchivos {
         List<Usuario> usuarios = new ArrayList<>();
 
         try {
-            archivo = new File("Archivos/Usuarios.txt");
+            archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/usuarios.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -69,7 +69,7 @@ public class ManejadorDeArchivos {
                 String nombre = datosUsuario[0];
                 double presupuesto = Integer.parseInt(datosUsuario[1]);
                 double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
-                TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[4]);
+                TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[3]);
 
                 usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
                 linea = br.readLine();
@@ -98,7 +98,7 @@ public class ManejadorDeArchivos {
         List<Oferta> promociones = new ArrayList<>();
 
         try {
-            archivo = new File("Archivos/Promociones.txt");
+            archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/promociones.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -110,12 +110,12 @@ public class ManejadorDeArchivos {
                 String tipoPromocion = datosPromocion[1];
                 String[] atraccionesString = datosPromocion[2].split("-");
                 Atraccion[] atracciones = new Atraccion[atraccionesString.length];
-                double descuentoAbsoluto;
                 String[] atraccionesGratisString;
                 for (int i = 0; i < atraccionesString.length; i++) {
                     atracciones[i] = Boleteria.obtenerAtraccionPorNombre(atraccionesString[i]);
                 }
-                int descuentoPorcentual = 0;
+                double descuentoAbsoluto;
+                int descuentoPorcentual;
 
                 if (tipoPromocion.equals("PromocionAbsoluta")) {
                     descuentoAbsoluto = Integer.parseInt(datosPromocion[3]);

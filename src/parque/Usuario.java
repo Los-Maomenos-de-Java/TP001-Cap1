@@ -23,6 +23,10 @@ public class Usuario {
         ofertasCompradas.add(o);
     }
 
+    public boolean comproLaAtraccion(Oferta oferta) {
+        return this.ofertasCompradas.contains(oferta);
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -35,7 +39,11 @@ public class Usuario {
         return tiempoDisponible;
     }
 
-    public TipoDeAtraccion getTipoDeAtraccionPreferida() {
-        return this.tipoDeAtraccionPreferida;
+    public boolean puedeVisitar(Oferta oferta) {
+        return this.tiempoDisponible >= oferta.getTiempo() && this.presupuesto >= oferta.getCosto();
+    }
+
+    public boolean esDelTipoQueLeGusta(Oferta oferta) {
+        return this.tipoDeAtraccionPreferida.equals(oferta.getTipo());
     }
 }

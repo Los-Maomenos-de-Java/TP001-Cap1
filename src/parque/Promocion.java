@@ -43,6 +43,11 @@ public abstract class Promocion implements Oferta {
     }
 
     @Override
+    public boolean tieneCupo() {
+        return this.getCupo() > 0;
+    }
+
+    @Override
     public int getCupo() {
         return atracciones
                 .stream()
@@ -57,16 +62,11 @@ public abstract class Promocion implements Oferta {
                 .stream()
                 .map(Oferta::getTipo)
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("La promoci�n no contiene atracciones"));
+                .orElseThrow(() -> new RuntimeException("La promoción no contiene atracciones"));
     }
 
     public List<Atraccion> getAtracciones() {
         return this.atracciones;
-    }
-
-    @Override
-    public boolean contieneAtraccion(Atraccion atraccion) {
-        return atracciones.contains(atraccion);
     }
 
     @Override
