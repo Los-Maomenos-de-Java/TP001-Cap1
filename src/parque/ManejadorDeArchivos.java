@@ -75,7 +75,7 @@ public class ManejadorDeArchivos {
 				String nombre = datosUsuario[0];
 				double presupuesto = Integer.parseInt(datosUsuario[1]);
 				double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
-				TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[4]);
+				TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[3]);
 
 				usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
 				linea = br.readLine();
