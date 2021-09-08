@@ -58,6 +58,7 @@ public class Boleteria {
             Oferta ofertaSugerida = this.ofertasParaUsuario.remove(0);
             if (this.vendedor.ofrecer(ofertaSugerida)) {
                 usuario.comprarAtraccion(ofertaSugerida);
+                ofertaSugerida.serComprada();
                 this.ofertasFiltradasPara(usuario);
                 vendedor.continuarVenta(usuario);
             }

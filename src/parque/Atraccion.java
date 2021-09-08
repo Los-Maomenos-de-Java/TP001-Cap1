@@ -18,6 +18,7 @@ public class Atraccion implements Oferta {
         this.cupo = cupo;
     }
 
+    @Override
     public void serComprada() {
         this.cupo--;
     }

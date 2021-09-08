@@ -23,6 +23,13 @@ public abstract class Promocion implements Oferta {
     }
 
     @Override
+    public void serComprada() {
+        for (Atraccion atraccion : atracciones) {
+            atraccion.serComprada();
+        }
+    }
+
+    @Override
     public String getNombre() {
         return this.nombre;
     }
