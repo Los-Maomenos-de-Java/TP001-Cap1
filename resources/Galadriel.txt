@@ -1,25 +1,12 @@
-📅 Wed, 08 Sep 2021 14:01:35
+		📅 Wed, 08 Sep 2021 14:21:02
 
 
 		RESUMEN DE COMPRA DE GALADRIEL:
 ---------------------------------------------------------------
-|Atracciones                    |Costo      |Tiempo    |
-|- Promocion 1                  |$8.5       |⏱ 5.5     |
-	-Minas Tirith                 5.0                  
-	-Erebor                       12.0                 
-	-Descuento                    -8.5                 
-|- Promocion 3                  |$18.0      |⏱ 7.5     |
-	-La Comarca                   3.0                  
-	-Lothlarien                   35.0                 
-	-Descuento                    -20.0                
-|- Erebor                       |$12.0      |⏱ 3.0     |
-|- Minas Tirith                 |$5.0       |⏱ 2.5     |
-|- Abismo de Helm               |$5.0       |⏱ 2.0     |
-|- Lothlarien                   |$35.0      |⏱ 1.0     |
-|- Moria                        |$10.0      |⏱ 2.0     |
-|- La Comarca                   |$3.0       |⏱ 6.5     |
-|- Bosque Negro                 |$3.0       |⏱ 4.0     |
----------------------------------------------------------------
+Atracciones                    |Costo      |Tiempo    |
 
-COSTO TOTAL: $99.5
-TIEMPO REQUERIDO: 34.0
+- Abismo de Helm               |$5.0       |⏱ 2.0     |
+
+---------------------------------------------------------------
+- TOTAL                        |$5.0       |⏱ 2.0     |
+---------------------------------------------------------------

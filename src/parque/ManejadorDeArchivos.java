@@ -173,37 +173,39 @@ public class ManejadorDeArchivos {
         var fecha = new Date();
         var fechaFormateada = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss").format(fecha);
 
-        salida.println("\uD83D\uDCC5 " + fechaFormateada);
+        salida.println("\t\t" + "\uD83D\uDCC5 " + fechaFormateada);
         salida.println("\n\n\t\tRESUMEN DE COMPRA DE " + usuario.getNombre().toUpperCase() + ":");
 
         salida.println("---------------------------------------------------------------");
 
-        salida.printf("|%-30.30s |%-10.10s |%-10.10s|%n", "Atracciones", "Costo", "Tiempo");
+        salida.printf("%-30.30s |%-10.10s |%-10.10s|%n", "Atracciones", "Costo", "Tiempo");
+        salida.printf("\n");
 
         ofertasCompradas
                 .stream()
                 .filter(Oferta::esPromocion)
                 .forEach(promocion -> {
-                    salida.printf("|%-30.30s |%-10.10s |%-10.10s|%n",
+                    salida.printf("%-30.30s |%-10.10s |%-10.10s|%n",
                             "- " + promocion.getNombre(),
                             "$" + promocion.getCosto(),
                             "⏱ " + promocion.getTiempo());
-                    promocion.getAtracciones().forEach(atraccion -> salida.printf("%-30.30s %-10.10s %-10.10s%n",
+                    promocion.getAtracciones().forEach(atraccion -> salida.printf("%-25.25s %-10.10s %-10.10s%n",
                             "\t-" + atraccion.getNombre()
-                            , atraccion.getCosto(), ""));
-                    salida.printf("%-30.30s %-10.10s %-10.10s%n",
+                            , "$" + atraccion.getCosto(), ""));
+                    salida.printf("%-25.25s %-10.10s %-10.10s%n",
                             "\t-Descuento",
-                            promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum(),
-                            "\n");
+                            "$" + (promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum()),
+                            "");
+                    salida.printf("\n");
                 });
 
         ofertasCompradas
                 .stream()
                 .filter(oferta -> !oferta.esPromocion())
-                .map(atraccion -> salida.printf("|%-30.30s |%-10.10s |%-10.10s|%n",
+                .map(atraccion -> salida.printf("%-30.30s |%-10.10s |%-10.10s|%n%n",
                         "- " + atraccion.getNombre(),
                         "$" + atraccion.getCosto(),
-                        "⏱ " + atraccion.getTiempo() + "\n"))
+                        "⏱ " + atraccion.getTiempo()))
                 .collect(Collectors.toList());
 
         salida.println("---------------------------------------------------------------");
@@ -211,7 +213,10 @@ public class ManejadorDeArchivos {
         var costoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getCosto).sum();
         var tiempoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getTiempo).sum();
 
-        salida.println("\n" + "COSTO TOTAL: $" + costoTotal + "\n" + "TIEMPO REQUERIDO: " + tiempoTotal);
+        salida.printf("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "$" + costoTotal, "⏱ " + tiempoTotal);
+
+        salida.println("---------------------------------------------------------------");
+
         salida.close();
     }
 }
