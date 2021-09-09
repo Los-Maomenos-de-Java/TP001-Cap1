@@ -2,7 +2,7 @@ package parque;
 
 import java.util.List;
 
-public interface Oferta {
+public interface Ofertable {
 	String getNombre();
     double getCosto();
     double getTiempo();

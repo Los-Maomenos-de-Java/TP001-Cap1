@@ -9,7 +9,7 @@ public class Usuario {
     private double presupuesto;
     private double tiempoDisponible;
     private TipoDeAtraccion tipoDeAtraccionPreferida;
-    private List<Oferta> ofertasCompradas = new ArrayList<>();
+    private List<Ofertable> ofertasCompradas = new ArrayList<>();
 
     public Usuario(String nombre, double presupuesto, double tiempoDisponible, TipoDeAtraccion tipoDeAtraccionPreferida) {
         this.nombre = nombre;
@@ -18,24 +18,24 @@ public class Usuario {
         this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
     }
 
-    public void comprarAtraccion(Oferta o) {
+    public void comprarAtraccion(Ofertable o) {
         presupuesto -= o.getCosto();
         tiempoDisponible -= o.getTiempo();
         ofertasCompradas.add(o);
     }
 
-    public boolean esDelTipoQueLeGusta(Oferta oferta) {
-        return oferta.getTipo() == this.tipoDeAtraccionPreferida;
+    public boolean esDelTipoQueLeGusta(Ofertable ofertable) {
+        return ofertable.getTipo() == this.tipoDeAtraccionPreferida;
     }
 
-    public boolean puedeVisitar(Oferta oferta) {
-        return this.presupuesto >= oferta.getCosto() && this.tiempoDisponible >= oferta.getTiempo();
+    public boolean puedeVisitar(Ofertable ofertable) {
+        return this.presupuesto >= ofertable.getCosto() && this.tiempoDisponible >= ofertable.getTiempo();
     }
 
-    public boolean comproLaAtraccion(Oferta oferta) {
+    public boolean comproLaAtraccion(Ofertable ofertable) {
         return getAtraccionesCompradas()
                 .stream()
-                .anyMatch(oferta::contieneAtraccion);
+                .anyMatch(ofertable::contieneAtraccion);
     }
 
     public String getNombre() {
@@ -57,7 +57,7 @@ public class Usuario {
     public List<Atraccion> getAtraccionesCompradas() {
         return this.ofertasCompradas
                 .stream()
-                .map(Oferta::getAtracciones)
+                .map(Ofertable::getAtracciones)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
     }

@@ -3,7 +3,7 @@ package parque;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Promocion implements Oferta {
+public abstract class Promocion implements Ofertable {
     protected List<Atraccion> atracciones = new ArrayList<>();
     private String nombre;
     
@@ -48,9 +48,9 @@ public abstract class Promocion implements Oferta {
     public TipoDeAtraccion getTipo() {
         return atracciones
                 .stream()
-                .map(Oferta::getTipo)
+                .map(Ofertable::getTipo)
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("La promoción no contiene atracciones"));
+                .orElseThrow(() -> new RuntimeException("La promociï¿½n no contiene atracciones"));
     }
 
     public List<Atraccion> getAtracciones() {

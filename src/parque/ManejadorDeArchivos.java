@@ -9,13 +9,13 @@ import java.util.List;
 
 public class ManejadorDeArchivos {
 
-	public static List<Oferta> leerAtracciones() {
+	public static List<Ofertable> leerAtracciones() {
 
 		File archivo = null;
 		FileReader fr = null;
 		BufferedReader br = null;
 
-		List<Oferta> atracciones = new ArrayList<>();
+		List<Ofertable> atracciones = new ArrayList<>();
 
 		try {
 			archivo = new File("Archivos/Atracciones.txt");
@@ -100,13 +100,13 @@ public class ManejadorDeArchivos {
 
 	}
 
-	public static List<Oferta> leerPromociones() {
+	public static List<Ofertable> leerPromociones() {
 
 		File archivo = null;
 		FileReader fr = null;
 		BufferedReader br = null;
 
-		List<Oferta> promociones = new ArrayList<>();
+		List<Ofertable> promociones = new ArrayList<>();
 
 		try {
 			archivo = new File("Archivos/Promociones.txt");

@@ -2,7 +2,7 @@ package parque;
 
 import java.util.Comparator;
 
-public class OrdenadorDeOfertas implements Comparator<Oferta> {
+public class OrdenadorDeOfertas implements Comparator<Ofertable> {
 	private TipoDeAtraccion tipoFavorito;
 
 	public OrdenadorDeOfertas(TipoDeAtraccion tipoAtraccionFavorito) {
@@ -10,7 +10,7 @@ public class OrdenadorDeOfertas implements Comparator<Oferta> {
 	}
 
 	@Override
-	public int compare(Oferta o1, Oferta o2) {
+	public int compare(Ofertable o1, Ofertable o2) {
 		// Prioridad atraccion favorita
 		if(o1.getTipo() == tipoFavorito && o2.getTipo() != tipoFavorito) {
 			return -1;
