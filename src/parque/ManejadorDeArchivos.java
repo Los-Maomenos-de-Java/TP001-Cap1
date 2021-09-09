@@ -16,7 +16,7 @@ public class ManejadorDeArchivos {
         List<Ofertable> atracciones = new ArrayList<>();
 
         try {
-            archivo = new File("resources/atracciones.txt");
+            archivo = new File("archivos/atracciones.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -57,7 +57,7 @@ public class ManejadorDeArchivos {
         List<Usuario> usuarios = new ArrayList<>();
 
         try {
-            archivo = new File("resources/usuarios.txt");
+            archivo = new File("archivos/usuarios.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -97,7 +97,7 @@ public class ManejadorDeArchivos {
         List<Ofertable> promociones = new ArrayList<>();
 
         try {
-            archivo = new File("resources/promociones.txt");
+            archivo = new File("archivos/promociones.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -159,9 +159,9 @@ public class ManejadorDeArchivos {
     }
 
     public static void generarTicket(Usuario usuario, List<Ofertable> ofertasCompradas) throws IOException {
-        File nuevoTicket = new File("resources/" + usuario.getNombre() + ".txt");
+        File nuevoTicket = new File("archivos/" + usuario.getNombre() + ".txt");
 
-        PrintWriter salida = new PrintWriter(new FileWriter("resources/" + usuario.getNombre() + ".txt"));
+        PrintWriter salida = new PrintWriter(new FileWriter("archivos/" + usuario.getNombre() + ".txt"));
 
         nuevoTicket.createNewFile();
 
