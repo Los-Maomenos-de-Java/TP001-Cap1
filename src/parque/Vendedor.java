@@ -10,12 +10,12 @@ public class Vendedor {
 
 	public void iniciarVenta(Usuario usuario) {
 		// saludar
-		System.out.println("Bienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuesto()
+		System.out.println("Bienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuestoActual()
 				+ " y " + usuario.getTiempoDisponible() + " horas disponibles\n");
 	}
 
 	public void continuarVenta(Usuario usuario) {
-		System.out.println("Ahora cuentas con: $" + usuario.getPresupuesto() + " y " + usuario.getTiempoDisponible()
+		System.out.println("Ahora cuentas con: $" + usuario.getPresupuestoActual() + " y " + usuario.getTiempoDisponible()
 				+ " horas disponibles\n");
 	}
 
