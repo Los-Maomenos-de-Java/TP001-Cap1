@@ -128,8 +128,8 @@ public class ManejadorDeArchivos {
                 if (tipoPromocion.equals("PromocionAxB")) {
                     atraccionesGratisString = datosPromocion[3].split("-");
                     Promocion promocionAAgregar = new PromocionAxB(nombre, atraccionesGratisString);
-                    for (Atraccion atraccione : atracciones) {
-                        promocionAAgregar.agregarAtraccion(atraccione);
+                    for (Atraccion atraccion : atracciones) {
+                        promocionAAgregar.agregarAtraccion(atraccion);
                     }
                     promociones.add(promocionAAgregar);
                 }
@@ -224,8 +224,8 @@ public class ManejadorDeArchivos {
 
         salida.println("------------------------------------------------------------------------------");
 
-        salida.println("\nPresupuesto final: " + usuario.getPresupuestoActual());
-        salida.println("Tiempo restante: " + usuario.getTiempoDisponible());
+        salida.println("\n-Presupuesto final: " + usuario.getPresupuestoActual());
+        salida.println("-Tiempo restante: " + usuario.getTiempoDisponible());
 
         salida.close();
     }

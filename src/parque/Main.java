@@ -8,10 +8,10 @@ public class Main {
         List<Usuario> usuarios = ManejadorDeArchivos.leerUsuarios();
         Boleteria boleteria = new Boleteria();
 
-        System.out.println(DibujadorDeHomero.dibujarHomero());
-
         for (Usuario u : usuarios) {
             boleteria.ofrecerA(u);
         }
+
+        System.out.println(DibujadorDeHomero.dibujarHomero());
     }
 }
