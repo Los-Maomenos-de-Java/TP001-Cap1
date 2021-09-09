@@ -1,33 +1,25 @@
 package parque;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PromocionAxB extends Promocion {
-	private List<Atraccion> atraccionesGratis = new ArrayList<>();
-	
-	public PromocionAxB(String nombre,String [] atraccionesGratis) {
-		super(nombre);
-		for(String atraccion:atraccionesGratis) {
-			this.agregarAtraccionGratis(atraccion);
-		}
-	}
-	
-    public void agregarAtraccionGratis(String nombreAtraccion) {
-    	for(Atraccion atraccion:this.atracciones) {
-    		if(atraccion.getNombre() == nombreAtraccion) {
-    	    	this.atraccionesGratis.add(atraccion);
-    		}
-    	}
+    private List<String> atraccionesGratis;
+
+    public PromocionAxB(String nombre, String[] atraccionesGratis) {
+        super(nombre);
+        this.atraccionesGratis = Arrays.stream(atraccionesGratis)
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
-    
+
     @Override
     public double getCosto() {
-        var costoAtraccionesGratis = atraccionesGratis
+        return atracciones
                 .stream()
-                .mapToDouble(Atraccion::getCosto)
-                .sum();
-
-        return costoTotalAtracciones() - costoAtraccionesGratis;
+                .filter(atraccion -> !atraccionesGratis.contains(atraccion.getNombre().toLowerCase()))
+                .mapToDouble(Atraccion::getCosto).sum();
     }
 }
