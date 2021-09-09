@@ -42,7 +42,7 @@ public class Boleteria {
         var ofertasParaUsuario = ofertasOrdenadasPara(usuario, ofertas.stream());
         this.vendedor.iniciarVenta(usuario);
 
-        while (!ofertasParaUsuario.isEmpty() && usuario.getPresupuesto() > 0 && usuario.getTiempoDisponible() > 0) {
+        while (!ofertasParaUsuario.isEmpty() && usuario.getPresupuestoActual() > 0 && usuario.getTiempoDisponible() > 0) {
             Oferta ofertaSugerida = ofertasParaUsuario.poll();
             if (this.vendedor.ofrecer(ofertaSugerida)) {
                 usuario.comprarAtraccion(ofertaSugerida);

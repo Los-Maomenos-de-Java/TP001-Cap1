@@ -170,48 +170,60 @@ public class ManejadorDeArchivos {
         var fecha = new Date();
         var fechaFormateada = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss").format(fecha);
 
-        salida.println("\t\t" + "\uD83D\uDCC5 " + fechaFormateada);
-        salida.println("\n\n\t\tRESUMEN DE COMPRA DE " + usuario.getNombre().toUpperCase() + ":");
+        salida.println("\t\t\t" + "\uD83D\uDCC5 " + fechaFormateada);
 
-        salida.println("---------------------------------------------------------------");
+        salida.println("\n Datos del usuario: ");
+        salida.println("- Nombre: " + usuario.getNombre());
+        salida.println("- Presupuesto inicial: " + usuario.getPresupuestoInicial());
+        salida.println("- Tiempo disponible: " + usuario.getTiempoInicial() + "\n");
 
-        salida.printf("%-30.30s |%-10.10s |%-10.10s|%n", "Atracciones", "Costo", "Tiempo");
-        salida.printf("\n");
+        salida.println("------------------------------------------------------------------------------");
+        salida.println("\t\t\tRESUMEN DE COMPRA DE " + usuario.getNombre().toUpperCase() + ":");
+        salida.println("------------------------------------------------------------------------------");
+
+        salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "        Atracciones", "   Costo", "  Tiempo", " Tipo de Atracción");
+        salida.printf("------------------------------------------------------------------------------\n");
 
         ofertasCompradas
                 .stream()
                 .filter(Oferta::esPromocion)
                 .forEach(promocion -> {
-                    salida.printf("%-30.30s |%-10.10s |%-10.10s|%n",
+                    salida.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
                             "- " + promocion.getNombre(),
-                            "$" + promocion.getCosto(),
-                            "⏱ " + promocion.getTiempo());
-                    promocion.getAtracciones().forEach(atraccion -> salida.printf("%-25.25s %-10.10s %-10.10s%n",
+                            "  $" + promocion.getCosto(),
+                            "  ⏱ " + promocion.getTiempo(),
+                            "     " + promocion.getTipo().toString().charAt(0)
+                                    + promocion.getTipo().toString().substring(1).toLowerCase());
+                    promocion.getAtracciones().forEach(atraccion -> salida.printf("%-23.23s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "\t-" + atraccion.getNombre()
-                            , "$" + atraccion.getCosto(), ""));
-                    salida.printf("%-25.25s %-10.10s %-10.10s%n",
+                            , "  $" + atraccion.getCosto(), "", ""));
+                    salida.printf("%-23.23s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "\t-Descuento",
-                            "$" + (promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum()),
-                            "");
-                    salida.printf("\n");
+                            "  $" + (promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum()),
+                            "", "");
+                    salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
                 });
 
         ofertasCompradas
                 .stream()
                 .filter(oferta -> !oferta.esPromocion())
-                .forEach(atraccion -> salida.printf("%-30.30s |%-10.10s |%-10.10s|%n%n",
+                .forEach(atraccion -> salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n",
                         "- " + atraccion.getNombre(),
-                        "$" + atraccion.getCosto(),
-                        "⏱ " + atraccion.getTiempo()));
-
-        salida.println("---------------------------------------------------------------");
+                        "  $" + atraccion.getCosto(),
+                        "  ⏱ " + atraccion.getTiempo(),
+                        "     " + atraccion.getTipo().toString().charAt(0)
+                                + atraccion.getTipo().toString().substring(1).toLowerCase()));
+        salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
 
         var costoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getCosto).sum();
         var tiempoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getTiempo).sum();
 
-        salida.printf("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "$" + costoTotal, "⏱ " + tiempoTotal);
+        salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "- TOTAL", "  $" + costoTotal, "  ⏱ " + tiempoTotal, "");
 
-        salida.println("---------------------------------------------------------------");
+        salida.println("------------------------------------------------------------------------------");
+
+        salida.println("\nPresupuesto final: " + usuario.getPresupuestoActual());
+        salida.println("Tiempo restante: " + usuario.getTiempoDisponible());
 
         salida.close();
     }

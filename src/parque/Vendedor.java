@@ -10,18 +10,17 @@ public class Vendedor {
     private Scanner scan = new Scanner(System.in);
 
     public void iniciarVenta(Usuario usuario) {
-        System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuesto()
+        System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuestoActual()
                 + " y " + usuario.getTiempoDisponible() + " horas disponibles\n");
     }
 
     public void continuarVenta(Usuario usuario) {
-        System.out.println("Ahora cuentas con: $" + usuario.getPresupuesto() + " y " + usuario.getTiempoDisponible()
+        System.out.println("Ahora cuentas con: $" + usuario.getPresupuestoActual() + " y " + usuario.getTiempoDisponible()
                 + " horas disponibles\n");
     }
 
     public boolean ofrecer(Oferta ofertaSugerida) {
-        System.out.println(
-                "-----------------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------");
         System.out.println("\nPuedo ofrecerte:\n");
 
         if (ofertaSugerida.esPromocion()) {
@@ -56,15 +55,13 @@ public class Vendedor {
     }
 
     public void mostrarItinerario() {
-        System.out.println(
-                "-----------------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------");
         System.out.println("No tengo nada más para ofrecer.\n\nEste es tu itinerario:");
         Itinerario vendido = new Itinerario(this.ofertasVendidas);
         System.out.println(vendido);
         System.out.println("Presioná Enter para continuar");
         scan.nextLine();
-        System.out.println(
-                "-----------------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------");
     }
 
     public void generarTicket(Usuario usuario) throws IOException {

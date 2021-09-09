@@ -6,20 +6,24 @@ import java.util.stream.Collectors;
 
 public class Usuario {
     private String nombre;
-    private double presupuesto;
+    private double presupuestoActual;
     private double tiempoDisponible;
+    private final double PRESUPUESTO_INICIAL;
+    private final double TIEMPO_INICIAL;
     private TipoDeAtraccion tipoDeAtraccionPreferida;
     private List<Oferta> ofertasCompradas = new ArrayList<>();
 
     public Usuario(String nombre, double presupuesto, double tiempoDisponible, TipoDeAtraccion tipoDeAtraccionPreferida) {
         this.nombre = nombre;
-        this.presupuesto = presupuesto;
-        this.tiempoDisponible = tiempoDisponible;
+        this.PRESUPUESTO_INICIAL = presupuesto;
+        this.TIEMPO_INICIAL = tiempoDisponible;
+        this.presupuestoActual = PRESUPUESTO_INICIAL;
+        this.tiempoDisponible = TIEMPO_INICIAL;
         this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
     }
 
     public void comprarAtraccion(Oferta oferta) {
-        presupuesto -= oferta.getCosto();
+        presupuestoActual -= oferta.getCosto();
         tiempoDisponible -= oferta.getTiempo();
         ofertasCompradas.add(oferta);
     }
@@ -37,7 +41,7 @@ public class Usuario {
     }
 
     public boolean puedeVisitar(Oferta oferta) {
-        return this.tiempoDisponible >= oferta.getTiempo() && this.presupuesto >= oferta.getCosto();
+        return this.tiempoDisponible >= oferta.getTiempo() && this.presupuestoActual >= oferta.getCosto();
     }
 
     public boolean esDelTipoQueLeGusta(Oferta oferta) {
@@ -48,11 +52,19 @@ public class Usuario {
         return nombre;
     }
 
-    public double getPresupuesto() {
-        return presupuesto;
+    public double getPresupuestoActual() {
+        return presupuestoActual;
     }
 
     public double getTiempoDisponible() {
         return tiempoDisponible;
+    }
+
+    public double getPresupuestoInicial() {
+        return this.PRESUPUESTO_INICIAL;
+    }
+
+    public double getTiempoInicial() {
+        return this.TIEMPO_INICIAL;
     }
 }
