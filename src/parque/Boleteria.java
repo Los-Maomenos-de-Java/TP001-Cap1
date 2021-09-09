@@ -48,7 +48,7 @@ public class Boleteria {
     	this.ofertasParaUsuario.removeIf(oferta -> tieneAtraccionVendida(oferta));
     	
     	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCupo() ==0));
-    	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCosto() > usuario.getPresupuesto()));
+    	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCosto() > usuario.getPresupuestoActual()));
     	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getTiempo() > usuario.getTiempoDisponible()));
     	return this.ofertasParaUsuario;
     }
@@ -56,7 +56,7 @@ public class Boleteria {
     public void ofrecerA(Usuario usuario) {
     	this.ofertasOrdenadasPara(usuario);
     	this.vendedor.iniciarVenta(usuario);
-    	while(!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuesto() > 0 && usuario.getTiempoDisponible() > 0) {
+    	while(!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuestoActual() > 0 && usuario.getTiempoDisponible() > 0) {
     		Ofertable ofertableSugerida = this.ofertasParaUsuario.remove(0);
     		if(this.vendedor.ofrecer(ofertableSugerida)) {
     			usuario.comprarAtraccion(ofertableSugerida);

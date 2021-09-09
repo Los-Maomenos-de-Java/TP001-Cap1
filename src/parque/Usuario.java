@@ -6,24 +6,24 @@ import java.util.stream.Collectors;
 
 public class Usuario {
     private String nombre;
-    private double presupuesto;
+    private double presupuestoActual;
     private double tiempoDisponible;
     private final double PRESUPUESTO_INICIAL;
     private final double TIEMPO_INICIAL;
     private TipoDeAtraccion tipoDeAtraccionPreferida;
     private List<Ofertable> ofertasCompradas = new ArrayList<>();
 
-    public Usuario(String nombre, double presupuesto, double tiempoDisponible, TipoDeAtraccion tipoDeAtraccionPreferida) {
+    public Usuario(String nombre, double presupuestoActual, double tiempoDisponible, TipoDeAtraccion tipoDeAtraccionPreferida) {
         this.nombre = nombre;
-        this.PRESUPUESTO_INICIAL = presupuesto;
+        this.PRESUPUESTO_INICIAL = presupuestoActual;
         this.TIEMPO_INICIAL = tiempoDisponible;
-        this.presupuesto = PRESUPUESTO_INICIAL;
+        this.presupuestoActual = PRESUPUESTO_INICIAL;
         this.tiempoDisponible = TIEMPO_INICIAL;
         this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
     }
 
     public void comprarAtraccion(Ofertable ofertable) {
-        presupuesto -= ofertable.getCosto();
+        presupuestoActual -= ofertable.getCosto();
         tiempoDisponible -= ofertable.getTiempo();
         ofertasCompradas.add(ofertable);
     }
@@ -41,7 +41,7 @@ public class Usuario {
     }
 
     public boolean puedeVisitar(Ofertable ofertable) {
-        return this.tiempoDisponible >= ofertable.getTiempo() && this.presupuesto >= ofertable.getCosto();
+        return this.tiempoDisponible >= ofertable.getTiempo() && this.presupuestoActual >= ofertable.getCosto();
     }
 
     public boolean esDelTipoQueLeGusta(Ofertable ofertable) {
@@ -52,8 +52,8 @@ public class Usuario {
         return nombre;
     }
 
-    public double getPresupuesto() {
-        return presupuesto;
+    public double getPresupuestoActual() {
+        return presupuestoActual;
     }
 
     public double getTiempoDisponible() {
