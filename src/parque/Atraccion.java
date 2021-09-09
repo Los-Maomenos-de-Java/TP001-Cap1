@@ -3,7 +3,7 @@ package parque;
 import java.util.List;
 import java.util.Objects;
 
-public class Atraccion implements Oferta {
+public class Atraccion implements Ofertable {
     private String nombre;
     private double costoVisita;
     private double tiempoPromedio;

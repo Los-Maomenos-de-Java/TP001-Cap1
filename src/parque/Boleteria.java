@@ -6,47 +6,47 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Boleteria {
-    public static List<Oferta> ofertas = new ArrayList<>();
+    public static List<Ofertable> ofertables = new ArrayList<>();
     private Vendedor vendedor = new Vendedor();
 
     public Boleteria() {
-        ofertas = ManejadorDeArchivos.leerAtracciones();
-        ofertas.addAll(ManejadorDeArchivos.leerPromociones());
+        ofertables = ManejadorDeArchivos.leerAtracciones();
+        ofertables.addAll(ManejadorDeArchivos.leerPromociones());
     }
 
     public static Atraccion obtenerAtraccionPorNombre(String nombre) {
-        return ofertas
+        return ofertables
                 .stream()
                 .filter(oferta -> !oferta.esPromocion())
                 .filter(oferta -> oferta.getNombre().equals(nombre))
                 .findFirst()
-                .map(Oferta::getAtracciones)
+                .map(Ofertable::getAtracciones)
                 .filter(list -> !list.isEmpty())
                 .map(atracciones -> atracciones.get(0))
                 .orElse(null);
     }
 
-    private Queue<Oferta> ofertasOrdenadasPara(Usuario usuario, Stream<Oferta> ofertasParaUsuario) {
+    private Queue<Ofertable> ofertasOrdenadasPara(Usuario usuario, Stream<Ofertable> ofertasParaUsuario) {
         return ofertasParaUsuario
-                .filter(Oferta::tieneCupo)
+                .filter(Ofertable::tieneCupo)
                 .filter(usuario::puedeVisitar)
                 .filter(oferta -> !usuario.comproLaOferta(oferta))
                 .sorted(Comparator.comparing(usuario::esDelTipoQueLeGusta)
-                        .thenComparing(Oferta::esPromocion)
-                        .thenComparing(Oferta::getCosto)
-                        .thenComparing(Oferta::getTiempo).reversed())
+                        .thenComparing(Ofertable::esPromocion)
+                        .thenComparing(Ofertable::getCosto)
+                        .thenComparing(Ofertable::getTiempo).reversed())
                 .collect(Collectors.toCollection(ArrayDeque::new));
     }
 
     public void ofrecerA(Usuario usuario) throws IOException {
-        var ofertasParaUsuario = ofertasOrdenadasPara(usuario, ofertas.stream());
+        var ofertasParaUsuario = ofertasOrdenadasPara(usuario, ofertables.stream());
         this.vendedor.iniciarVenta(usuario);
 
         while (!ofertasParaUsuario.isEmpty() && usuario.getPresupuestoActual() > 0 && usuario.getTiempoDisponible() > 0) {
-            Oferta ofertaSugerida = ofertasParaUsuario.poll();
-            if (this.vendedor.ofrecer(ofertaSugerida)) {
-                usuario.comprarAtraccion(ofertaSugerida);
-                ofertaSugerida.serComprada();
+            Ofertable ofertableSugerida = ofertasParaUsuario.poll();
+            if (this.vendedor.ofrecer(ofertableSugerida)) {
+                usuario.comprarAtraccion(ofertableSugerida);
+                ofertableSugerida.serComprada();
                 vendedor.continuarVenta(usuario);
             }
             ofertasParaUsuario = ofertasOrdenadasPara(usuario, ofertasParaUsuario.stream());

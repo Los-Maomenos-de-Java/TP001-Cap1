@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Itinerario {
-    private List<Oferta> atracciones = new ArrayList<>();
+    private List<Ofertable> atracciones = new ArrayList<>();
 
-    public Itinerario(List<Oferta> ofertasVendidas) {
+    public Itinerario(List<Ofertable> ofertasVendidas) {
         atracciones.addAll(ofertasVendidas);
     }
 
@@ -20,7 +20,7 @@ public class Itinerario {
 
         atracciones
                 .stream()
-                .filter(Oferta::esPromocion)
+                .filter(Ofertable::esPromocion)
                 .forEach(promocion -> {
                     System.out.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
                             "- " + promocion.getNombre(),
@@ -53,8 +53,8 @@ public class Itinerario {
 
         System.out.println("-----------------------------------------------------------------------------");
 
-        var costoTotal = atracciones.stream().mapToDouble(Oferta::getCosto).sum();
-        var tiempoTotal = atracciones.stream().mapToDouble(Oferta::getTiempo).sum();
+        var costoTotal = atracciones.stream().mapToDouble(Ofertable::getCosto).sum();
+        var tiempoTotal = atracciones.stream().mapToDouble(Ofertable::getTiempo).sum();
 
         System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "  $" + costoTotal, "  ⏱ " + tiempoTotal);
 
