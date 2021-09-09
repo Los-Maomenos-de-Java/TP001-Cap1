@@ -202,11 +202,10 @@ public class ManejadorDeArchivos {
         ofertasCompradas
                 .stream()
                 .filter(oferta -> !oferta.esPromocion())
-                .map(atraccion -> salida.printf("%-30.30s |%-10.10s |%-10.10s|%n%n",
+                .forEach(atraccion -> salida.printf("%-30.30s |%-10.10s |%-10.10s|%n%n",
                         "- " + atraccion.getNombre(),
                         "$" + atraccion.getCosto(),
-                        "⏱ " + atraccion.getTiempo()))
-                .collect(Collectors.toList());
+                        "⏱ " + atraccion.getTiempo()));
 
         salida.println("---------------------------------------------------------------");
 

@@ -17,10 +17,10 @@ public class Usuario {
         this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
     }
 
-    public void comprarAtraccion(Oferta o) {
-        presupuesto -= o.getCosto();
-        tiempoDisponible -= o.getTiempo();
-        ofertasCompradas.add(o);
+    public void comprarAtraccion(Oferta oferta) {
+        presupuesto -= oferta.getCosto();
+        tiempoDisponible -= oferta.getTiempo();
+        ofertasCompradas.add(oferta);
     }
 
     public boolean comproLaAtraccion(Oferta oferta) {

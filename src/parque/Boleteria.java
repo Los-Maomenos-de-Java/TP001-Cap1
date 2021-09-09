@@ -27,36 +27,32 @@ public class Boleteria {
     }
 
     private Queue<Oferta> ofertasOrdenadasPara(Usuario usuario) {
-        this.ofertasParaUsuario.clear();
-        this.ofertasParaUsuario.addAll(ofertas);
-        ofertasParaUsuario =
-                ofertasParaUsuario
-                        .stream()
-                        .filter(Oferta::tieneCupo)
-                        .filter(usuario::puedeVisitar)
-                        .filter(oferta -> !usuario.comproLaAtraccion(oferta))
-                        .sorted(Comparator.comparing(usuario::esDelTipoQueLeGusta)
-                                .thenComparing(Oferta::esPromocion)
-                                .thenComparing(Oferta::getCosto)
-                                .thenComparing(Oferta::getTiempo).reversed())
-                        .collect(Collectors.toCollection(ArrayDeque::new));
+        ofertasParaUsuario = ofertas
+                .stream()
+                .filter(Oferta::tieneCupo)
+                .filter(usuario::puedeVisitar)
+                .filter(oferta -> !usuario.comproLaAtraccion(oferta))
+                .sorted(Comparator.comparing(usuario::esDelTipoQueLeGusta)
+                        .thenComparing(Oferta::esPromocion)
+                        .thenComparing(Oferta::getCosto)
+                        .thenComparing(Oferta::getTiempo).reversed())
+                .collect(Collectors.toCollection(ArrayDeque::new));
 
         return ofertasParaUsuario;
     }
 
     public void ofrecerA(Usuario usuario) throws IOException {
-        this.ofertasOrdenadasPara(usuario);
+        ofertasOrdenadasPara(usuario);
         this.vendedor.iniciarVenta(usuario);
 
         while (!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuesto() > 0 && usuario.getTiempoDisponible() > 0) {
-            Oferta ofertaSugerida = this.ofertasParaUsuario.peek();
-            ofertasParaUsuario.poll();
+            Oferta ofertaSugerida = this.ofertasParaUsuario.poll();
             if (this.vendedor.ofrecer(ofertaSugerida)) {
-                usuario.comprarAtraccion(ofertaSugerida);
-                ofertaSugerida.serComprada();
-                this.ofertasOrdenadasPara(usuario);
+                //usuario.comprarAtraccion(ofertaSugerida);
+                //ofertaSugerida.serComprada();
                 vendedor.continuarVenta(usuario);
             }
+            ofertasOrdenadasPara(usuario);
         }
         vendedor.mostrarItinerario();
         vendedor.generarTicket(usuario);
