@@ -159,11 +159,9 @@ public class ManejadorDeArchivos {
     }
 
     public static void generarTicket(Usuario usuario, List<Ofertable> ofertasCompradas) throws IOException {
-        File nuevoTicket = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones" +
-                "/TP001-Cap1/resources/" + usuario.getNombre() + ".txt");
+        File nuevoTicket = new File("resources/" + usuario.getNombre() + ".txt");
 
-        PrintWriter salida = new PrintWriter(new FileWriter("/Volumes/HP P500/Programación/Java/ParqueDiversiones" +
-                "/TP001-Cap1/resources/" + usuario.getNombre() + ".txt"));
+        PrintWriter salida = new PrintWriter(new FileWriter("resources/" + usuario.getNombre() + ".txt"));
 
         nuevoTicket.createNewFile();
 
