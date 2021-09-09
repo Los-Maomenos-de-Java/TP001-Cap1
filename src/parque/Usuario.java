@@ -8,34 +8,44 @@ public class Usuario {
     private String nombre;
     private double presupuesto;
     private double tiempoDisponible;
+    private final double PRESUPUESTO_INICIAL;
+    private final double TIEMPO_INICIAL;
     private TipoDeAtraccion tipoDeAtraccionPreferida;
     private List<Ofertable> ofertasCompradas = new ArrayList<>();
 
     public Usuario(String nombre, double presupuesto, double tiempoDisponible, TipoDeAtraccion tipoDeAtraccionPreferida) {
         this.nombre = nombre;
-        this.presupuesto = presupuesto;
-        this.tiempoDisponible = tiempoDisponible;
+        this.PRESUPUESTO_INICIAL = presupuesto;
+        this.TIEMPO_INICIAL = tiempoDisponible;
+        this.presupuesto = PRESUPUESTO_INICIAL;
+        this.tiempoDisponible = TIEMPO_INICIAL;
         this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
     }
 
-    public void comprarAtraccion(Ofertable o) {
-        presupuesto -= o.getCosto();
-        tiempoDisponible -= o.getTiempo();
-        ofertasCompradas.add(o);
+    public void comprarAtraccion(Ofertable ofertable) {
+        presupuesto -= ofertable.getCosto();
+        tiempoDisponible -= ofertable.getTiempo();
+        ofertasCompradas.add(ofertable);
     }
 
-    public boolean esDelTipoQueLeGusta(Ofertable ofertable) {
-        return ofertable.getTipo() == this.tipoDeAtraccionPreferida;
+    public boolean comproLaOferta(Ofertable ofertable) {
+        return getAtraccionesCompradas().containsAll(ofertable.getAtracciones());
+    }
+
+    public List<Atraccion> getAtraccionesCompradas() {
+        return this.ofertasCompradas
+                .stream()
+                .map(Ofertable::getAtracciones)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 
     public boolean puedeVisitar(Ofertable ofertable) {
-        return this.presupuesto >= ofertable.getCosto() && this.tiempoDisponible >= ofertable.getTiempo();
+        return this.tiempoDisponible >= ofertable.getTiempo() && this.presupuesto >= ofertable.getCosto();
     }
 
-    public boolean comproLaAtraccion(Ofertable ofertable) {
-        return getAtraccionesCompradas()
-                .stream()
-                .anyMatch(ofertable::contieneAtraccion);
+    public boolean esDelTipoQueLeGusta(Ofertable ofertable) {
+        return this.tipoDeAtraccionPreferida.equals(ofertable.getTipo());
     }
 
     public String getNombre() {
@@ -50,15 +60,15 @@ public class Usuario {
         return tiempoDisponible;
     }
 
-    public TipoDeAtraccion getTipoDeAtraccionPreferida() {
-        return this.tipoDeAtraccionPreferida;
+    public double getPresupuestoInicial() {
+        return this.PRESUPUESTO_INICIAL;
     }
 
-    public List<Atraccion> getAtraccionesCompradas() {
-        return this.ofertasCompradas
-                .stream()
-                .map(Ofertable::getAtracciones)
-                .flatMap(List::stream)
-                .collect(Collectors.toList());
+    public double getTiempoInicial() {
+        return this.TIEMPO_INICIAL;
+    }
+
+    public TipoDeAtraccion getTipoDeAtraccionPreferida() {
+        return this.tipoDeAtraccionPreferida;
     }
 }
