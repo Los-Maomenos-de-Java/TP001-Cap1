@@ -2,6 +2,7 @@ package parque;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Usuario {
     private String nombre;
@@ -23,8 +24,16 @@ public class Usuario {
         ofertasCompradas.add(oferta);
     }
 
-    public boolean comproLaAtraccion(Oferta oferta) {
-        return this.ofertasCompradas.contains(oferta);
+    public boolean comproLaOferta(Oferta oferta) {
+        return getAtraccionesCompradas().containsAll(oferta.getAtracciones());
+    }
+
+    public List<Atraccion> getAtraccionesCompradas() {
+        return this.ofertasCompradas
+                .stream()
+                .map(Oferta::getAtracciones)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 
     public String getNombre() {
