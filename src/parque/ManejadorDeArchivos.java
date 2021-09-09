@@ -16,7 +16,7 @@ public class ManejadorDeArchivos {
         List<Ofertable> atracciones = new ArrayList<>();
 
         try {
-            archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/atracciones.txt");
+            archivo = new File("resources/atracciones.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -57,7 +57,7 @@ public class ManejadorDeArchivos {
         List<Usuario> usuarios = new ArrayList<>();
 
         try {
-            archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/usuarios.txt");
+            archivo = new File("resources/usuarios.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -97,7 +97,7 @@ public class ManejadorDeArchivos {
         List<Ofertable> promociones = new ArrayList<>();
 
         try {
-            archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/promociones.txt");
+            archivo = new File("resources/promociones.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -199,7 +199,11 @@ public class ManejadorDeArchivos {
                             , "  $" + atraccion.getCosto(), "", ""));
                     salida.printf("%-23.23s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "\t-Descuento",
-                            "  $" + (promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum()),
+                            "  $" + (promocion.getCosto() - promocion
+                                    .getAtracciones()
+                                    .stream()
+                                    .mapToDouble(Atraccion::getCosto)
+                                    .sum()),
                             "", "");
                     salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
                 });
