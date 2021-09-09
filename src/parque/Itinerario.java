@@ -2,7 +2,6 @@ package parque;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Itinerario {
     private List<Oferta> atracciones = new ArrayList<>();
@@ -13,7 +12,7 @@ public class Itinerario {
 
     @Override
     public String toString() {
-        System.out.println("\n\t\tATRACCIONES COMPRADAS: \n");
+        System.out.println("\n\t\t\tATRACCIONES COMPRADAS: \n");
 
         System.out.println("-----------------------------------------------------------------------------");
         System.out.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "        Atracciones", "   Costo", "  Tiempo", " Tipo de Atracción");
