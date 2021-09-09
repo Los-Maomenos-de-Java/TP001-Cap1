@@ -11,7 +11,7 @@ public class Usuario {
     private final double PRESUPUESTO_INICIAL;
     private final double TIEMPO_INICIAL;
     private TipoDeAtraccion tipoDeAtraccionPreferida;
-    private List<Oferta> ofertasCompradas = new ArrayList<>();
+    private List<Ofertable> ofertasCompradas = new ArrayList<>();
 
     public Usuario(String nombre, double presupuesto, double tiempoDisponible, TipoDeAtraccion tipoDeAtraccionPreferida) {
         this.nombre = nombre;
@@ -22,30 +22,30 @@ public class Usuario {
         this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
     }
 
-    public void comprarAtraccion(Oferta oferta) {
-        presupuestoActual -= oferta.getCosto();
-        tiempoDisponible -= oferta.getTiempo();
-        ofertasCompradas.add(oferta);
+    public void comprarAtraccion(Ofertable ofertable) {
+        presupuestoActual -= ofertable.getCosto();
+        tiempoDisponible -= ofertable.getTiempo();
+        ofertasCompradas.add(ofertable);
     }
 
-    public boolean comproLaOferta(Oferta oferta) {
-        return getAtraccionesCompradas().containsAll(oferta.getAtracciones());
+    public boolean comproLaOferta(Ofertable ofertable) {
+        return getAtraccionesCompradas().containsAll(ofertable.getAtracciones());
     }
 
     public List<Atraccion> getAtraccionesCompradas() {
         return this.ofertasCompradas
                 .stream()
-                .map(Oferta::getAtracciones)
+                .map(Ofertable::getAtracciones)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
-    public boolean puedeVisitar(Oferta oferta) {
-        return this.tiempoDisponible >= oferta.getTiempo() && this.presupuestoActual >= oferta.getCosto();
+    public boolean puedeVisitar(Ofertable ofertable) {
+        return this.tiempoDisponible >= ofertable.getTiempo() && this.presupuestoActual >= ofertable.getCosto();
     }
 
-    public boolean esDelTipoQueLeGusta(Oferta oferta) {
-        return this.tipoDeAtraccionPreferida.equals(oferta.getTipo());
+    public boolean esDelTipoQueLeGusta(Ofertable ofertable) {
+        return this.tipoDeAtraccionPreferida.equals(ofertable.getTipo());
     }
 
     public String getNombre() {

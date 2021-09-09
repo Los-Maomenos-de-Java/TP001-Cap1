@@ -8,12 +8,12 @@ import java.util.List;
 
 public class ManejadorDeArchivos {
 
-    public static List<Oferta> leerAtracciones() {
+    public static List<Ofertable> leerAtracciones() {
         File archivo;
         BufferedReader br;
         FileReader fr = null;
 
-        List<Oferta> atracciones = new ArrayList<>();
+        List<Ofertable> atracciones = new ArrayList<>();
 
         try {
             archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/atracciones.txt");
@@ -89,12 +89,12 @@ public class ManejadorDeArchivos {
         return usuarios;
     }
 
-    public static List<Oferta> leerPromociones() {
+    public static List<Ofertable> leerPromociones() {
         File archivo;
         FileReader fr = null;
         BufferedReader br;
 
-        List<Oferta> promociones = new ArrayList<>();
+        List<Ofertable> promociones = new ArrayList<>();
 
         try {
             archivo = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones/TP001-Cap1/resources/promociones.txt");
@@ -158,7 +158,7 @@ public class ManejadorDeArchivos {
         return promociones;
     }
 
-    public static void generarTicket(Usuario usuario, List<Oferta> ofertasCompradas) throws IOException {
+    public static void generarTicket(Usuario usuario, List<Ofertable> ofertasCompradas) throws IOException {
         File nuevoTicket = new File("/Volumes/HP P500/Programación/Java/ParqueDiversiones" +
                 "/TP001-Cap1/resources/" + usuario.getNombre() + ".txt");
 
@@ -186,7 +186,7 @@ public class ManejadorDeArchivos {
 
         ofertasCompradas
                 .stream()
-                .filter(Oferta::esPromocion)
+                .filter(Ofertable::esPromocion)
                 .forEach(promocion -> {
                     salida.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
                             "- " + promocion.getNombre(),
@@ -215,8 +215,8 @@ public class ManejadorDeArchivos {
                                 + atraccion.getTipo().toString().substring(1).toLowerCase()));
         salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
 
-        var costoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getCosto).sum();
-        var tiempoTotal = ofertasCompradas.stream().mapToDouble(Oferta::getTiempo).sum();
+        var costoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getCosto).sum();
+        var tiempoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getTiempo).sum();
 
         salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "- TOTAL", "  $" + costoTotal, "  ⏱ " + tiempoTotal, "");
 
