@@ -1,183 +1,232 @@
 package parque;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ManejadorDeArchivos {
 
-	public static List<Ofertable> leerAtracciones() {
+    public static List<Ofertable> leerAtracciones() {
+        File archivo;
+        BufferedReader br;
+        FileReader fr = null;
 
-		File archivo = null;
-		FileReader fr = null;
-		BufferedReader br = null;
+        List<Ofertable> atracciones = new ArrayList<>();
 
-		List<Ofertable> atracciones = new ArrayList<>();
+        try {
+            archivo = new File("resources/atracciones.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-		try {
-			archivo = new File("Archivos/Atracciones.txt");
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
+            String linea = br.readLine();
+            while (linea != null) {
+                String[] datosAtraccion = linea.split(",");
 
-			String linea = br.readLine();
-			while (linea != null) {
-				String[] datosAtraccion = linea.split(",");
+                String nombre = datosAtraccion[0];
+                double costoVisita = Double.parseDouble(datosAtraccion[1]);
+                double tiempoPromedio = Double.parseDouble(datosAtraccion[2]);
+                int cupo = Integer.parseInt(datosAtraccion[3]);
+                TipoDeAtraccion tipoAtraccion = TipoDeAtraccion.valueOf(datosAtraccion[4]);
 
-				String nombre = datosAtraccion[0];
-				double costoVisita = Double.parseDouble(datosAtraccion[1]);
-				double tiempoPromedio = Double.parseDouble(datosAtraccion[2]);
-				int cupo = Integer.parseInt(datosAtraccion[3]);
-				TipoDeAtraccion tipoAtraccion = TipoDeAtraccion.valueOf(datosAtraccion[4]);
+                atracciones.add(new Atraccion(nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo));
+                linea = br.readLine();
+            }
+            return atracciones;
 
-				atracciones.add(new Atraccion(nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo));
-				linea = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return atracciones;
+    }
 
-			}
-			return atracciones;
+    public static List<Usuario> leerUsuarios() {
+        File archivo;
+        FileReader fr = null;
+        BufferedReader br;
 
-		} catch (IOException e) {
-			e.printStackTrace();
+        List<Usuario> usuarios = new ArrayList<>();
 
-		} finally {
+        try {
+            archivo = new File("resources/usuarios.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
+            String linea = br.readLine();
+            while (linea != null) {
+                String[] datosUsuario = linea.split(",");
 
-		return atracciones;
-	}
+                String nombre = datosUsuario[0];
+                double presupuesto = Integer.parseInt(datosUsuario[1]);
+                double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
+                TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[3]);
 
-	public static List<Usuario> leerUsuarios() {
+                usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
+                linea = br.readLine();
+            }
+            return usuarios;
 
-		File archivo = null;
-		FileReader fr = null;
-		BufferedReader br = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return usuarios;
+    }
 
-		List<Usuario> usuarios = new ArrayList<>();
+    public static List<Ofertable> leerPromociones() {
+        File archivo;
+        FileReader fr = null;
+        BufferedReader br;
 
-		try {
-			archivo = new File("Archivos/Usuarios.txt");
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
+        List<Ofertable> promociones = new ArrayList<>();
 
-			String linea = br.readLine();
-			while (linea != null) {
-				String[] datosUsuario = linea.split(",");
+        try {
+            archivo = new File("resources/promociones.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-				String nombre = datosUsuario[0];
-				double presupuesto = Integer.parseInt(datosUsuario[1]);
-				double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
-				TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[3]);
+            String linea = br.readLine();
+            while (linea != null) {
+                String[] datosPromocion = linea.split(",");
 
-				usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
-				linea = br.readLine();
-			}
-			return usuarios;
+                String nombre = datosPromocion[0];
+                String tipoPromocion = datosPromocion[1];
+                String[] atraccionesString = datosPromocion[2].split("-");
+                Atraccion[] atracciones = new Atraccion[atraccionesString.length];
+                String[] atraccionesGratisString;
+                for (int i = 0; i < atraccionesString.length; i++) {
+                    atracciones[i] = Boleteria.obtenerAtraccionPorNombre(atraccionesString[i]);
+                }
+                double descuentoAbsoluto;
+                int descuentoPorcentual;
 
-		} catch (IOException e) {
-			e.printStackTrace();
+                if (tipoPromocion.equals("PromocionAbsoluta")) {
+                    descuentoAbsoluto = Integer.parseInt(datosPromocion[3]);
+                    Promocion promocionAAgregar = new PromocionAbsoluta(nombre, descuentoAbsoluto);
+                    for (Atraccion atraccion : atracciones) {
+                        promocionAAgregar.agregarAtraccion(atraccion);
+                    }
+                    promociones.add(promocionAAgregar);
+                }
 
-		} finally {
+                if (tipoPromocion.equals("PromocionAxB")) {
+                    atraccionesGratisString = datosPromocion[3].split("-");
+                    Promocion promocionAAgregar = new PromocionAxB(nombre, atraccionesGratisString);
+                    for (Atraccion atraccion : atracciones) {
+                        promocionAAgregar.agregarAtraccion(atraccion);
+                    }
+                    promociones.add(promocionAAgregar);
+                }
+                if (tipoPromocion.equals("PromocionPorcentual")) {
+                    descuentoPorcentual = Integer.parseInt(datosPromocion[3]);
+                    Promocion promocionAAgregar = new PromocionPorcentual(nombre, descuentoPorcentual);
+                    for (Atraccion atraccione : atracciones) {
+                        promocionAAgregar.agregarAtraccion(atraccione);
+                    }
+                    promociones.add(promocionAAgregar);
+                }
+                linea = br.readLine();
+            }
+            return promociones;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return promociones;
+    }
 
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
+    public static void generarTicket(Usuario usuario, List<Ofertable> ofertasCompradas) throws IOException {
+        File nuevoTicket = new File("resources/" + usuario.getNombre() + ".txt");
 
-		return usuarios;
+        PrintWriter salida = new PrintWriter(new FileWriter("resources/" + usuario.getNombre() + ".txt"));
 
-	}
+        nuevoTicket.createNewFile();
 
-	public static List<Ofertable> leerPromociones() {
+        var fecha = new Date();
+        var fechaFormateada = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss").format(fecha);
 
-		File archivo = null;
-		FileReader fr = null;
-		BufferedReader br = null;
+        salida.println("\t\t\t" + "\uD83D\uDCC5 " + fechaFormateada);
 
-		List<Ofertable> promociones = new ArrayList<>();
+        salida.println("\n Datos del usuario: ");
+        salida.println("- Nombre: " + usuario.getNombre());
+        salida.println("- Presupuesto inicial: " + usuario.getPresupuestoInicial());
+        salida.println("- Tiempo disponible: " + usuario.getTiempoInicial() + "\n");
 
-		try {
-			archivo = new File("Archivos/Promociones.txt");
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
+        salida.println("------------------------------------------------------------------------------");
+        salida.println("\t\t\tRESUMEN DE COMPRA DE " + usuario.getNombre().toUpperCase() + ":");
+        salida.println("------------------------------------------------------------------------------");
 
-			int indice = 0;
-			String linea = br.readLine();
-			while (linea != null) {
-				String[] datosPromocion = linea.split(",");
+        salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "        Atracciones", "   Costo", "  Tiempo", " Tipo de Atracción");
+        salida.printf("------------------------------------------------------------------------------\n");
 
-				String nombre = datosPromocion[0];
-				String tipoPromocion = datosPromocion[1];
-				String[] atraccionesString = datosPromocion[2].split("-");
-				Atraccion[] atracciones = new Atraccion[atraccionesString.length];
-				double descuentoAbsoluto = 0;
-				String[] atraccionesGratisString = null;
-				for (int i = 0; i < atraccionesString.length; i++) {
-					atracciones[i] = Boleteria.obtenerAtraccionPorNombre(atraccionesString[i]);
-				}
-				int descuentoPorcentual = 0;
-				
-				if (tipoPromocion.equals("PromocionAbsoluta")) {
-					descuentoAbsoluto = Integer.parseInt(datosPromocion[3]);
-					Promocion promocionAAgregar = new PromocionAbsoluta(nombre,descuentoAbsoluto);
-					for (int i = 0; i < atracciones.length; i++) {
-						promocionAAgregar.agregarAtraccion(atracciones[i]);
-					}
-					promociones.add(promocionAAgregar);
-				}
-				
-				if (tipoPromocion.equals("PromocionAxB")) {
-					atraccionesGratisString = datosPromocion[3].split("-");
-					Promocion promocionAAgregar = new PromocionAxB(nombre,atraccionesGratisString);
-					for (int i = 0; i < atracciones.length; i++) {
-						promocionAAgregar.agregarAtraccion(atracciones[i]);
-					}
-					promociones.add(promocionAAgregar);
+        ofertasCompradas
+                .stream()
+                .filter(Ofertable::esPromocion)
+                .forEach(promocion -> {
+                    salida.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
+                            "- " + promocion.getNombre(),
+                            "  $" + promocion.getCosto(),
+                            "  ⏱ " + promocion.getTiempo(),
+                            "     " + promocion.getTipo().toString().charAt(0)
+                                    + promocion.getTipo().toString().substring(1).toLowerCase());
+                    promocion.getAtracciones().forEach(atraccion -> salida.printf("%-23.23s |%-10.10s |%-10.10s |%-20.20s|%n",
+                            "\t-" + atraccion.getNombre()
+                            , "  $" + atraccion.getCosto(), "", ""));
+                    salida.printf("%-23.23s |%-10.10s |%-10.10s |%-20.20s|%n",
+                            "\t-Descuento",
+                            "  $" + (promocion.getCosto() - promocion
+                                    .getAtracciones()
+                                    .stream()
+                                    .mapToDouble(Atraccion::getCosto)
+                                    .sum()),
+                            "", "");
+                    salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
+                });
 
-				}
+        ofertasCompradas
+                .stream()
+                .filter(oferta -> !oferta.esPromocion())
+                .forEach(atraccion -> salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n",
+                        "- " + atraccion.getNombre(),
+                        "  $" + atraccion.getCosto(),
+                        "  ⏱ " + atraccion.getTiempo(),
+                        "     " + atraccion.getTipo().toString().charAt(0)
+                                + atraccion.getTipo().toString().substring(1).toLowerCase()));
+        salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
 
-				if (tipoPromocion.equals( "PromocionPorcentual")) {
-					descuentoPorcentual = Integer.parseInt(datosPromocion[3]);
-					Promocion promocionAAgregar = new PromocionPorcentual(nombre,descuentoPorcentual);
-					for (int i = 0; i < atracciones.length; i++) {
-						promocionAAgregar.agregarAtraccion(atracciones[i]);
-					}
-					promociones.add(promocionAAgregar);
-				}
+        var costoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getCosto).sum();
+        var tiempoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getTiempo).sum();
 
-				linea = br.readLine();
+        salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "- TOTAL", "  $" + costoTotal, "  ⏱ " + tiempoTotal, "");
 
-			}
-			return promociones;
+        salida.println("------------------------------------------------------------------------------");
 
-		} catch (IOException e) {
-			e.printStackTrace();
+        salida.println("\n-Presupuesto final: " + usuario.getPresupuestoActual());
+        salida.println("-Tiempo restante: " + usuario.getTiempoDisponible());
 
-		} finally {
-
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-		return promociones;
-
-	}
-
+        salida.close();
+    }
 }
