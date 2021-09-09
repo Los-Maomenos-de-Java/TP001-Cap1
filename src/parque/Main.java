@@ -12,5 +12,7 @@ public class Main {
         for(Usuario u:usuarios) {
             boleteria.ofrecerA(u);
         }
+
+        System.out.println(DibujadorDeHomero.dibujarHomero());
     }
 }
