@@ -1,5 +1,6 @@
 package parque;
 
+import java.io.IOException;
 import java.util.ArrayList;
 //import java.util.Comparator;
 import java.util.List;
@@ -45,7 +46,7 @@ public class Boleteria {
     
     private List<Ofertable> ofertasFiltradasPara(Usuario usuario){
     	//remover oferta si alguna de las: oferta.Atracciones est� en atraccionesVendidas
-    	this.ofertasParaUsuario.removeIf(oferta -> tieneAtraccionVendida(oferta));
+    	this.ofertasParaUsuario.removeIf(this::tieneAtraccionVendida);
     	
     	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCupo() ==0));
     	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCosto() > usuario.getPresupuestoActual()));
@@ -53,7 +54,7 @@ public class Boleteria {
     	return this.ofertasParaUsuario;
     }
     
-    public void ofrecerA(Usuario usuario) {
+    public void ofrecerA(Usuario usuario) throws IOException {
     	this.ofertasOrdenadasPara(usuario);
     	this.vendedor.iniciarVenta(usuario);
     	while(!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuestoActual() > 0 && usuario.getTiempoDisponible() > 0) {
