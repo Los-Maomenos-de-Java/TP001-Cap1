@@ -75,14 +75,4 @@ public class Atraccion implements Oferta {
     public int hashCode() {
         return Objects.hash(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion);
     }
-
-    @Override
-    public String toString() {
-        return "Atraccion {" +
-                "Nombre: " + nombre +
-                ", Costo Visita: " + costoVisita +
-                ", Tiempo Promedio: " + tiempoPromedio +
-                ", Tipo de Atraccion=" + tipoDeAtraccion +
-                " }";
-    }
 }

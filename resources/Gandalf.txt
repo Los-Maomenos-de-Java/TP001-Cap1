@@ -1,12 +1,28 @@
-		📅 Thu, 09 Sep 2021 00:16:27
+		📅 Thu, 09 Sep 2021 10:49:52
 
 
 		RESUMEN DE COMPRA DE GANDALF:
 ---------------------------------------------------------------
 Atracciones                    |Costo      |Tiempo    |
 
-- Bosque Negro                 |$3.0       |⏱ 4.0     |
+- Promocion 1                  |$8.5       |⏱ 5.5     |
+	-Minas Tirith          |$5.0       |          
+	-Erebor                |$12.0      |          
+	-Descuento            |$-8.5      |          
+
+- Promocion 3                  |$18.0      |⏱ 7.5     |
+	-La Comarca            |$3.0       |          
+	-Lothlarien            |$35.0      |          
+	-Descuento            |$-20.0     |          
+
+- Promocion 2                  |$13.0      |⏱ 9.0     |
+	-Moria                 |$10.0      |          
+	-Mordor                |$25.0      |          
+	-Bosque Negro          |$3.0       |          
+	-Descuento            |$-25.0     |          
+
+- Abismo de Helm               |$5.0       |⏱ 2.0     |
 
 ---------------------------------------------------------------
-- TOTAL                        |$3.0       |⏱ 4.0     |
+- TOTAL                        |$44.5      |⏱ 24.0    |
 ---------------------------------------------------------------

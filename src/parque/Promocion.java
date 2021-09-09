@@ -30,6 +30,11 @@ public abstract class Promocion implements Oferta {
     }
 
     @Override
+    public boolean tieneCupo() {
+        return this.getCupo() > 0;
+    }
+
+    @Override
     public String getNombre() {
         return this.nombre;
     }
@@ -40,11 +45,6 @@ public abstract class Promocion implements Oferta {
                 .stream()
                 .mapToDouble(Atraccion::getTiempo)
                 .sum();
-    }
-
-    @Override
-    public boolean tieneCupo() {
-        return this.getCupo() > 0;
     }
 
     @Override
@@ -72,13 +72,5 @@ public abstract class Promocion implements Oferta {
     @Override
     public boolean esPromocion() {
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Promocion { " +
-                "Costo: " + getCosto() +
-                " Atracciones: " + atracciones +
-                " }";
     }
 }

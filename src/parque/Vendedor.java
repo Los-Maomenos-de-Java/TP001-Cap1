@@ -10,7 +10,6 @@ public class Vendedor {
     private Scanner scan = new Scanner(System.in);
 
     public void iniciarVenta(Usuario usuario) {
-        // saludar
         System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuesto()
                 + " y " + usuario.getTiempoDisponible() + " horas disponibles\n");
     }

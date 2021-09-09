@@ -36,6 +36,14 @@ public class Usuario {
                 .collect(Collectors.toList());
     }
 
+    public boolean puedeVisitar(Oferta oferta) {
+        return this.tiempoDisponible >= oferta.getTiempo() && this.presupuesto >= oferta.getCosto();
+    }
+
+    public boolean esDelTipoQueLeGusta(Oferta oferta) {
+        return this.tipoDeAtraccionPreferida.equals(oferta.getTipo());
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -46,13 +54,5 @@ public class Usuario {
 
     public double getTiempoDisponible() {
         return tiempoDisponible;
-    }
-
-    public boolean puedeVisitar(Oferta oferta) {
-        return this.tiempoDisponible >= oferta.getTiempo() && this.presupuesto >= oferta.getCosto();
-    }
-
-    public boolean esDelTipoQueLeGusta(Oferta oferta) {
-        return this.tipoDeAtraccionPreferida.equals(oferta.getTipo());
     }
 }
