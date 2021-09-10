@@ -1,18 +1,17 @@
 package parque;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PromocionAxB extends Promocion {
-    private List<Atraccion> atraccionesGratis = new ArrayList<>();
+    private List<String> atraccionesGratis;
 
     public PromocionAxB(String nombre, String[] atraccionesGratis) {
         super(nombre);
-        for (String atraccionString : atraccionesGratis) {
-            this.atraccionesGratis.add(Boleteria.obtenerAtraccionPorNombre(atraccionString));
-        }
+        this.atraccionesGratis = Arrays.stream(atraccionesGratis)
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
 
     @Override
