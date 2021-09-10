@@ -46,10 +46,10 @@ public class Boleteria {
     
     private List<Ofertable> ofertasFiltradasPara(Usuario usuario){
     	//remover oferta si alguna de las: oferta.Atracciones est� en atraccionesVendidas
-    	this.ofertasParaUsuario.removeIf(oferta -> tieneAtraccionVendida(oferta));
-    	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCupo() ==0));
-    	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCosto() > usuario.getPresupuestoActual()));
-    	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getTiempo() > usuario.getTiempoDisponible()));
+    	this.ofertasParaUsuario.removeIf(this::tieneAtraccionVendida);
+    	this.ofertasParaUsuario.removeIf(ofertable -> !ofertable.tieneCupo());
+    	this.ofertasParaUsuario.removeIf(ofertable -> !usuario.puedeVisitar(ofertable));
+
     	return this.ofertasParaUsuario;
     }
     
@@ -59,7 +59,7 @@ public class Boleteria {
     	while(!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuestoActual() > 0 && usuario.getTiempoDisponible() > 0) {
     		Ofertable ofertableSugerida = this.ofertasParaUsuario.remove(0);
     		if(this.vendedor.ofrecer(ofertableSugerida)) {
-    			usuario.comprarAtraccion(ofertableSugerida);
+    			usuario.comprarOferta(ofertableSugerida);
     			this.ofertasFiltradasPara(usuario);
     			vendedor.continuarVenta(usuario);
     		}

@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Itinerario {
-    private List<Ofertable> atracciones = new ArrayList<>();
+    private List<Ofertable> ofertas = new ArrayList<>();
 
     public Itinerario(List<Ofertable> ofertasVendidas) {
-        atracciones.addAll(ofertasVendidas);
+        ofertas.addAll(ofertasVendidas);
     }
 
-    public List<Atraccion> getAtracciones() {
-        return this.atracciones
+    public List<Atraccion> getOfertas() {
+        return this.ofertas
                 .stream()
                 .map(Ofertable::getAtracciones)
                 .flatMap(List::stream)
@@ -27,7 +27,7 @@ public class Itinerario {
         System.out.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "        Atracciones", "   Costo", "  Tiempo", " Tipo de Atracción");
         System.out.println("-----------------------------------------------------------------------------");
 
-        atracciones
+        ofertas
                 .stream()
                 .filter(Ofertable::esPromocion)
                 .forEach(promocion -> {
@@ -47,7 +47,7 @@ public class Itinerario {
                     System.out.print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
                 });
 
-        atracciones
+        ofertas
                 .stream()
                 .filter(oferta -> !oferta.esPromocion())
                 .forEach(atraccion -> System.out.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
@@ -62,8 +62,8 @@ public class Itinerario {
 
         System.out.println("-----------------------------------------------------------------------------");
 
-        var costoTotal = atracciones.stream().mapToDouble(Ofertable::getCosto).sum();
-        var tiempoTotal = atracciones.stream().mapToDouble(Ofertable::getTiempo).sum();
+        var costoTotal = ofertas.stream().mapToDouble(Ofertable::getCosto).sum();
+        var tiempoTotal = ofertas.stream().mapToDouble(Ofertable::getTiempo).sum();
 
         System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "  $" + costoTotal, "  ⏱ " + tiempoTotal);
 

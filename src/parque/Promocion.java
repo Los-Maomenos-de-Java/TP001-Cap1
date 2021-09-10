@@ -65,6 +65,7 @@ public abstract class Promocion implements Ofertable {
                 .orElseThrow(() -> new RuntimeException("La promoción no contiene atracciones"));
     }
 
+    @Override
     public List<Atraccion> getAtracciones() {
         return this.atracciones;
     }
