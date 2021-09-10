@@ -21,7 +21,12 @@ public class Atraccion implements Ofertable {
     public void serComprada() {
         this.cupo--;
     }
-    
+
+    @Override
+    public boolean tieneCupo() {
+        return this.cupo > 0;
+    }
+
     @Override
     public String getNombre() {
     	return this.nombre;
@@ -50,11 +55,6 @@ public class Atraccion implements Ofertable {
     @Override
     public List<Atraccion> getAtracciones() {
         return List.of(this);
-    }
-
-    @Override
-    public boolean contieneAtraccion(Atraccion o) {
-        return this.equals(o);
     }
 
     @Override

@@ -21,6 +21,18 @@ public abstract class Promocion implements Ofertable {
                 .mapToDouble(Atraccion::getCosto)
                 .sum();
     }
+
+    @Override
+    public void serComprada() {
+        for (Atraccion atraccion : atracciones){
+            atraccion.serComprada();
+        }
+    }
+
+    @Override
+    public boolean tieneCupo() {
+        return this.getCupo() > 0;
+    }
     
     @Override
     public String getNombre() {
@@ -55,11 +67,6 @@ public abstract class Promocion implements Ofertable {
 
     public List<Atraccion> getAtracciones() {
         return this.atracciones;
-    }
-
-    @Override
-    public boolean contieneAtraccion(Atraccion atraccion){
-        return atracciones.contains(atraccion);
     }
 
     @Override

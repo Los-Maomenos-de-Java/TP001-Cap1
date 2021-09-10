@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PromocionAxB extends Promocion {
-    private List<String> atraccionesGratis;
+    private List<Atraccion> atraccionesGratis = new ArrayList<>();
 
     public PromocionAxB(String nombre, String[] atraccionesGratis) {
         super(nombre);
-        this.atraccionesGratis = Arrays.stream(atraccionesGratis)
-                .map(String::toLowerCase)
-                .collect(Collectors.toList());
+        for (String atraccionString : atraccionesGratis) {
+            this.atraccionesGratis.add(Boleteria.obtenerAtraccionPorNombre(atraccionString));
+        }
     }
 
     @Override

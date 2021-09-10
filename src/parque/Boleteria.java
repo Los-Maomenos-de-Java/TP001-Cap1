@@ -20,7 +20,7 @@ public class Boleteria {
     public static Atraccion obtenerAtraccionPorNombre(String nombre) {
     	for(Ofertable ofertable : ofertables) {
     		if(!ofertable.esPromocion()) {
-    			if(ofertable.getNombre() == nombre) {
+    			if(ofertable.getNombre().equals(nombre)) {
     				return ofertable.getAtracciones().get(0);
     			}
     		}

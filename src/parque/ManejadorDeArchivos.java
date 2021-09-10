@@ -66,8 +66,8 @@ public class ManejadorDeArchivos {
                 String[] datosUsuario = linea.split(",");
 
                 String nombre = datosUsuario[0];
-                double presupuesto = Integer.parseInt(datosUsuario[1]);
-                double tiempoDisponible = Integer.parseInt(datosUsuario[2]);
+                double presupuesto = Double.parseDouble(datosUsuario[1]);
+                double tiempoDisponible = Double.parseDouble(datosUsuario[2]);
                 TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.valueOf(datosUsuario[3]);
 
                 usuarios.add(new Usuario(nombre, presupuesto, tiempoDisponible, tipoDeAtraccionPreferida));
@@ -109,16 +109,19 @@ public class ManejadorDeArchivos {
                 String tipoPromocion = datosPromocion[1];
                 String[] atraccionesString = datosPromocion[2].split("-");
                 Atraccion[] atracciones = new Atraccion[atraccionesString.length];
-                String[] atraccionesGratisString;
+
                 for (int i = 0; i < atraccionesString.length; i++) {
                     atracciones[i] = Boleteria.obtenerAtraccionPorNombre(atraccionesString[i]);
                 }
+
                 double descuentoAbsoluto;
-                int descuentoPorcentual;
+                double descuentoPorcentual;
+                String[] atraccionesGratisString;
 
                 if (tipoPromocion.equals("PromocionAbsoluta")) {
-                    descuentoAbsoluto = Integer.parseInt(datosPromocion[3]);
+                    descuentoAbsoluto = Double.parseDouble(datosPromocion[3]);
                     Promocion promocionAAgregar = new PromocionAbsoluta(nombre, descuentoAbsoluto);
+
                     for (Atraccion atraccion : atracciones) {
                         promocionAAgregar.agregarAtraccion(atraccion);
                     }
@@ -134,7 +137,7 @@ public class ManejadorDeArchivos {
                     promociones.add(promocionAAgregar);
                 }
                 if (tipoPromocion.equals("PromocionPorcentual")) {
-                    descuentoPorcentual = Integer.parseInt(datosPromocion[3]);
+                    descuentoPorcentual = Double.parseDouble(datosPromocion[3]);
                     Promocion promocionAAgregar = new PromocionPorcentual(nombre, descuentoPorcentual);
                     for (Atraccion atraccione : atracciones) {
                         promocionAAgregar.agregarAtraccion(atraccione);
