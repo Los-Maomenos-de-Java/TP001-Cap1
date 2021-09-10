@@ -33,7 +33,7 @@ public abstract class Promocion implements Ofertable {
     public boolean tieneCupo() {
         return this.getCupo() > 0;
     }
-    
+
     @Override
     public String getNombre() {
         return this.nombre;
