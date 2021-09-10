@@ -24,11 +24,7 @@ public abstract class Promocion implements Ofertable {
 
     @Override
     public void serComprada() {
-<<<<<<< Updated upstream
-        for (Atraccion atraccion : atracciones){
-=======
         for (Atraccion atraccion : atracciones) {
->>>>>>> Stashed changes
             atraccion.serComprada();
         }
     }
@@ -37,11 +33,7 @@ public abstract class Promocion implements Ofertable {
     public boolean tieneCupo() {
         return this.getCupo() > 0;
     }
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
     @Override
     public String getNombre() {
         return this.nombre;
