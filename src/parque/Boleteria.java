@@ -46,8 +46,7 @@ public class Boleteria {
     
     private List<Ofertable> ofertasFiltradasPara(Usuario usuario){
     	//remover oferta si alguna de las: oferta.Atracciones est� en atraccionesVendidas
-    	this.ofertasParaUsuario.removeIf(this::tieneAtraccionVendida);
-    	
+    	this.ofertasParaUsuario.removeIf(oferta -> tieneAtraccionVendida(oferta));
     	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCupo() ==0));
     	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getCosto() > usuario.getPresupuestoActual()));
     	this.ofertasParaUsuario.removeIf(oferta -> (oferta.getTiempo() > usuario.getTiempoDisponible()));

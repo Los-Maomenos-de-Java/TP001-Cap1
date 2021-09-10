@@ -54,9 +54,13 @@ public class Vendedor {
         return false;
     }
 
-    public List<Ofertable> getAtraccionesVendidas() {
-        return this.ofertasVendidas;
-    }
+	public List<Atraccion> getAtraccionesVendidas() {
+		List<Atraccion> atraccionesVendidas = new ArrayList<>();
+		for(Ofertable oferta:this.ofertasVendidas) {
+			atraccionesVendidas.addAll(oferta.getAtracciones());
+		}
+		return atraccionesVendidas;
+	}
 
     public void mostrarItinerario() {
         System.out.println("-----------------------------------------------------------------------------");
