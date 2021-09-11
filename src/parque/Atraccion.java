@@ -67,12 +67,12 @@ public class Atraccion implements Ofertable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Atraccion atraccion = (Atraccion) o;
-        return Double.compare(atraccion.costoVisita, costoVisita) == 0 && Double.compare(atraccion.tiempoPromedio, tiempoPromedio) == 0 && nombre.equals(atraccion.nombre) && tipoDeAtraccion == atraccion.tipoDeAtraccion;
+        return Double.compare(atraccion.costoVisita, costoVisita) == 0 && Double.compare(atraccion.tiempoPromedio, tiempoPromedio) == 0 && nombre.equals(atraccion.nombre) && tipoDeAtraccion == atraccion.tipoDeAtraccion && Integer.compare(atraccion.cupo, cupo) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion);
+        return Objects.hash(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
     }
 
     @Override
