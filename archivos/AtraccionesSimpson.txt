@@ -1,0 +1,42 @@
+Luigi’s Pizza,150,2,10,DEGUSTACION
+Krusty Burguer,90,0.5,25,DEGUSTACION
+Land Lar Donuts,65,1.5,15,DEGUSTACION
+Taberna de Moe,50,4,5,DEGUSTACION
+La Trufa Dorada,200,3.5,20,DEGUSTACION
+El Holandés Errante,20,2,15,DEGUSTACION
+Shelbyville,180,4,100,RECORRIDO
+Ciudad capital,200,6,500,RECORRIDO
+Avenida Siempreviva 742,145,5,25,RECORRIDO
+La Casa de Retiro,89,4,30,RECORRIDO
+Fábrica de Cajas,32,2,15,RECORRIDO
+Iglesia de Springfield,27,2.5,50,RECORRIDO
+La casita del árbol,10,1,5,RECORRIDO
+La cabaña de Willy,5,0.5,2,RECORRIDO
+Canal 6,225,1,30,RECORRIDO
+Calle Falsa 123,175,2,10,ACCION
+Planta Nuclear,230,6,20,ACCION
+El laboratorio del Dr Flink,156,6,15,ACCION
+Barney's Bowlarama ,233,4,30,ACCION
+Mini golf,159,2,20,ACCION
+NoiseLand Arcade,74,8,50,ACCION
+La granja de Cletus,84,1,50,SHOW
+Itchy & Scratchy,250,2,100,SHOW
+Estadio Duff: Los isotopos vs Shelbyville,250,3,150,SHOW
+Los Borbotones,150,1.5,20,SHOW
+Venerilandia Ride,67,1,15,MONTAÑA_RUSA
+Monorriel,100,3,50,MONTAÑA_RUSA
+Springfield Lake,130,8,27,MONTAÑA_RUSA
+Krustyland Ride,180,3,7,MONTAÑA_RUSA
+El Calabozo del Androide,35,10,5,SHOP
+Kwik e Mart,55,2,10,SHOP
+Centro Comercial de Springfield,95,9,50,SHOP
+Leftorium,33,2,3,SHOP
+La Casita del Horror,175,10,170,TERROR
+La Mansión de Burns,175,6,25,TERROR
+Vieja Prisión de Springfield,66,4,100,TERROR
+Cementerios de Springfield,150,5,200,TERROR
+Estudios KBBL,25,4,23,CULTURAL
+Biblioteca de Springfield,10,6,87,CULTURAL
+Escuela Primaria,28,6,200,CULTURAL
+Museo de Springfield,12,4,100,CULTURAL
+Springfield General Hospital,54,4,53,CULTURAL

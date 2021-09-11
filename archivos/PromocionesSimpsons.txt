@@ -1,0 +1,15 @@
+Promo Fast Food,PromocionAbsoluta,Krusty Burguer-Land Lar Donuts-Taberna de Moe,50
+Promo Recorrido del Sabor,PromocionPorcentual,Luigi’s Pizza-La Trufa Dorada-El Holandés Errante,15
+Promo Borrachines,PromocionAxB,Krusty Burguer-Taberna de Moe-El Holandés Errante,Taberna de Moe
+Promo Apocalipsis,PromocionPorcentual,Planta Nuclear-El laboratorio del Dr Flink,20
+Promo Action Point,PromocionAxB,NoiseLand Arcade-Calle Falsa 123-Barney's Bowlarama -Mini golf,Calle Falsa 123-Mini golf
+Promo Día de Diversión,PromocionAbsoluta,Planta Nuclear-El laboratorio del Dr Flink-Barney's Bowlarama ,69
+Promo Paseo Nerd,PromocionAbsoluta,Estudios KBBL-Biblioteca de Springfield-Escuela Primaria-Museo de Springfield-Springfield General Hospital,29
+Promo Ride,PromocionPorcentual,Venerilandia Ride-Krustyland Ride,15
+Promo SpringFast,PromocionAbsoluta,Monorriel-Springfield Lake,30
+Promo Paseo LowCost,PromocionAxB,Fábrica de Cajas-La casita del árbol-La cabaña de Willy,La casita del árbol
+Promo El tiempo es oro,PromocionAbsoluta,Shelbyville-Ciudad capital-Canal 6,75
+Promo Jubilados,PromocionPorcentual,Avenida Siempreviva 742-La Casa de Retiro-Iglesia de Springfield,50
+Promo Minoria,PromocionPorcentual,El Calabozo del Androide-Leftorium,5
+Promo FamilyDay Show,PromocionAxB,La granja de Cletus-Itchy & Scratchy-Estadio Duff: Los isotopos vs Shelbyville,La granja de Cletus
+Promo Solo Valientes,PromocionAbsoluta,La Casita del Horror-La Mansión de Burns-Cementerios de Springfield,100

@@ -1,0 +1,32 @@
+Homero Simpson,2000,80,DEGUSTACION
+Marge Simpson,1000,100,RECORRIDO
+Lisa Simpson,800,40,CULTURAL
+Bart Simpson,600,60,ACCION
+Montgomery Burns,200000,120,TERROR
+Ned Flanders,3567,120,RECORRIDO
+Moe Scyzlack,893,150,TERROR
+Barney Gomez,470,200,DEGUSTACION
+Edna Krabapple,550,80,ACCION
+Seymour Skinner,500,80,CULTURAL
+Cosme Fulanito,4000,40,DEGUSTACION
+Milhouse Van Houten,800,40,MONTAÑA_RUSA
+Bob Patiño,1000,20,CULTURAL
+Apu Nahasapeemapetilon,300,10,SHOP
+Lenny Leonard,3000,75,MONTAÑA_RUSA
+Carl Carlson,3000,75,MONTAÑA_RUSA
+Patty Bouvier,6666,55,SHOW
+Selma Bouvier,6666,55,SHOW
+Nelson Muntz,123,70,ACCION
+Gordo Tony,33333,90,TERROR
+Nick Rivera,130.7,130,RECORRIDO
+Joe Quimby,100000,130,SHOP
+Julius Hibbert,50000,25,CULTURAL
+Kirk Van Houten,250,150,SHOW
+Martin Prince,729.4,40,CULTURAL
+Gil Gunderson,100,150,RECORRIDO
+Otto Mann,123.2,70,MONTAÑA_RUSA
+Helen Alegría,456.9,70,SHOP
+Luann Van Houten,1200,60,SHOP
+Reverendo Alegría,1500,35,SHOW
+Troy McClure,13900,45,ACCION
+Hombre Abejorro,1111.1,45,DEGUSTACION
