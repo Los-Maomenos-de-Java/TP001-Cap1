@@ -59,4 +59,15 @@ public class Usuario {
     public TipoDeAtraccion getTipoDeAtraccionPreferida() {
         return this.tipoDeAtraccionPreferida;
     }
+    
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Usuario that = (Usuario) o;
+		return nombre.equals(that.nombre) 
+				&& Double.compare(presupuestoActual,that.presupuestoActual) == 0
+				&& Double.compare(tiempoDisponible,that.tiempoDisponible) == 0
+				&& tipoDeAtraccionPreferida.equals(that.tipoDeAtraccionPreferida);
+	}
 }
