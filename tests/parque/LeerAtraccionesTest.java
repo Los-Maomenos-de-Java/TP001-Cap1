@@ -66,7 +66,7 @@ public class LeerAtraccionesTest {
 	}
 	
 	@Test
-	public void Atraccion0TestNombreIncorresto() {
+	public void Atraccion0TestNombreIncorrecto() {
 		Ofertable obtenido = atracciones.get(0);
 		Atraccion esperado = new Atraccion("Morodor", 10.0, 2.0, TipoDeAtraccion.valueOf("AVENTURA"), 6);
 		assertFalse(obtenido.equals(esperado));
