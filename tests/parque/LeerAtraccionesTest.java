@@ -7,7 +7,8 @@ import java.util.List;
 import org.junit.Test;
 
 public class LeerAtraccionesTest {
-    List<Ofertable> atracciones = ManejadorDeArchivos.leerAtracciones();
+	String archivoAtracciones = "archivos/atracciones.txt";
+    List<Ofertable> atracciones = ManejadorDeArchivos.leerAtracciones(archivoAtracciones);
 
 	@Test
 	public void Atraccion0Test() {

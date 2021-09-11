@@ -13,8 +13,10 @@ public class Boleteria {
     private Vendedor vendedor = new Vendedor();
     
     public Boleteria() {
-    	ofertables = ManejadorDeArchivos.leerAtracciones();
-    	ofertables.addAll(ManejadorDeArchivos.leerPromociones());
+    	String archivoAtracciones = "archivos/AtraccionesSimpson.txt";
+    	String archivoPromociones = "archivos/PromocionesSimpsons.txt";
+    	ofertables = ManejadorDeArchivos.leerAtracciones(archivoAtracciones);
+    	ofertables.addAll(ManejadorDeArchivos.leerPromociones(archivoPromociones));
     }
         
     public static Atraccion obtenerAtraccionPorNombre(String nombre) {

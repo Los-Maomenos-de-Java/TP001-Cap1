@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ManejadorDeArchivos {
 
-    public static List<Ofertable> leerAtracciones() {
+    public static List<Ofertable> leerAtracciones(String nombreArchivo) {
         File archivo;
         BufferedReader br;
         FileReader fr = null;
@@ -16,7 +16,7 @@ public class ManejadorDeArchivos {
         List<Ofertable> atracciones = new ArrayList<>();
 
         try {
-            archivo = new File("archivos/atracciones.txt");
+            archivo = new File(nombreArchivo);
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -49,7 +49,7 @@ public class ManejadorDeArchivos {
         return atracciones;
     }
 
-    public static List<Usuario> leerUsuarios() {
+    public static List<Usuario> leerUsuarios(String nombreArchivo) {
         File archivo;
         FileReader fr = null;
         BufferedReader br;
@@ -57,7 +57,7 @@ public class ManejadorDeArchivos {
         List<Usuario> usuarios = new ArrayList<>();
 
         try {
-            archivo = new File("archivos/usuarios.txt");
+            archivo = new File(nombreArchivo);
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -89,7 +89,7 @@ public class ManejadorDeArchivos {
         return usuarios;
     }
 
-    public static List<Ofertable> leerPromociones() {
+    public static List<Ofertable> leerPromociones(String nombreArchivo) {
         File archivo;
         FileReader fr = null;
         BufferedReader br;
@@ -97,7 +97,7 @@ public class ManejadorDeArchivos {
         List<Ofertable> promociones = new ArrayList<>();
 
         try {
-            archivo = new File("archivos/promociones.txt");
+            archivo = new File(nombreArchivo);
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
