@@ -15,8 +15,14 @@ public class Usuario {
 	private List<Ofertable> ofertasCompradas = new ArrayList<>();
 
 	public Usuario(String nombre, double presupuestoActual, double tiempoDisponible,
-			TipoDeAtraccion tipoDeAtraccionPreferida) {
+			TipoDeAtraccion tipoDeAtraccionPreferida){
 		this.nombre = nombre;
+		if(presupuestoActual < 0) {		
+			throw new Error("Presupuesto Inválido");
+		}		
+		if(tiempoDisponible < 0 ) {
+			throw new Error("Tiempo Disponible Inválido");
+		}
 		this.PRESUPUESTO_INICIAL = presupuestoActual;
 		this.TIEMPO_INICIAL = tiempoDisponible;
 		this.presupuestoActual = PRESUPUESTO_INICIAL;
@@ -25,6 +31,9 @@ public class Usuario {
 	}
 
 	public boolean comprarOferta(Ofertable ofertable) {
+		if(!puedeVisitar(ofertable)) {
+			throw new Error("No posee tiempo o dinero para comprar esta oferta");
+		}
 		if (ofertable.tieneCupo()) {
 			presupuestoActual -= ofertable.getCosto();
 			tiempoDisponible -= ofertable.getTiempo();

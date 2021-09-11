@@ -10,14 +10,27 @@ public class Atraccion implements Ofertable {
     private TipoDeAtraccion tipoDeAtraccion;
     private int cupo;
 
-    public Atraccion(String nombre, double costoVisita, double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, int cupo) {
+    public Atraccion(String nombre, double costoVisita, double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, int cupo) {   	
+		if(costoVisita < 0) {		
+			throw new Error("Costo Inválido");
+		}	
+		
+		if(tiempoPromedio < 0) {		
+			throw new Error("Tiempo de visita Inválido");
+		}	
+		
+		if(cupo < 0) {		
+			throw new Error("Cupo Inválido");
+		}	
+		
         this.nombre = nombre;
         this.costoVisita = costoVisita;
         this.tiempoPromedio = tiempoPromedio;
         this.tipoDeAtraccion = tipoDeAtraccion;
         this.cupo = cupo;
     }
-
+    
+    @Override
     public void serComprada() {
         this.cupo--;
     }

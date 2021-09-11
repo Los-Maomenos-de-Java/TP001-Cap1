@@ -12,6 +12,9 @@ public abstract class Promocion implements Ofertable {
     }
 
     protected void agregarAtraccion(Atraccion a) {
+    	if(atracciones.contains(a)) {
+    		throw new Error("Atraccion ya agregada");
+    	}
         atracciones.add(a);
     }
 
