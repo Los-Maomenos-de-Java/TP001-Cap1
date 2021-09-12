@@ -1,0 +1,55 @@
+			📅 sáb, 11 sep. 2021 20:50:42
+
+ Datos del usuario:
+- Nombre: Homero Simpson
+- Presupuesto inicial: 2000.0
+- Tiempo disponible: 80.0
+
+------------------------------------------------------------------------------
+			RESUMEN DE COMPRA DE HOMERO SIMPSON:
+------------------------------------------------------------------------------
+|        Atracciones           |   Costo   |  Tiempo   | Tipo de Atracción  |
+------------------------------------------------------------------------------
+|- Promo Recorrido del Sabor   |  $314.5   |  ⏱ 7.5   |     Degustacion    |
+	-Luigi’s Pizza         |  $150.0   |           |                    |
+	-La Trufa Dorada       |  $200.0   |           |                    |
+	-El Holandés Errante   |  $20.0    |           |                    |
+	-Descuento             |  $-55.5   |           |                    |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|- Promo Fast Food             |  $155.0   |  ⏱ 6.0   |     Degustacion    |
+	-Krusty Burguer        |  $90.0    |           |                    |
+	-Land Lar Donuts       |  $65.0    |           |                    |
+	-Taberna de Moe        |  $50.0    |           |                    |
+	-Descuento             |  $-50.0   |           |                    |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|- Promo Día de Diversión      |  $550.0   |  ⏱ 16.0  |     Accion         |
+	-Planta Nuclear        |  $230.0   |           |                    |
+	-El laboratorio del Dr |  $156.0   |           |                    |
+	-Barney's Bowlarama    |  $233.0   |           |                    |
+	-Descuento             |  $-69.0   |           |                    |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|- Promo El tiempo es oro      |  $530.0   |  ⏱ 11.0  |     Recorrido      |
+	-Shelbyville           |  $180.0   |           |                    |
+	-Ciudad capital        |  $200.0   |           |                    |
+	-Canal 6               |  $225.0   |           |                    |
+	-Descuento             |  $-75.0   |           |                    |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|- Promo Solo Valientes        |  $400.0   |  ⏱ 21.0  |     Terror         |
+	-La Casita del Horror  |  $175.0   |           |                    |
+	-La Mansión de Burns   |  $175.0   |           |                    |
+	-Cementerios de Spring |  $150.0   |           |                    |
+	-Descuento             |  $-100.0  |           |                    |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|- Promo Paseo LowCost         |  $37.0    |  ⏱ 3.5   |     Recorrido      |
+	-Fábrica de Cajas      |  $32.0    |           |                    |
+	-La casita del árbol   |  $10.0    |           |                    |
+	-La cabaña de Willy    |  $5.0     |           |                    |
+	-Descuento             |  $-10.0   |           |                    |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|- Museo de Springfield        |  $12.0    |  ⏱ 4.0    |     Cultural       |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|- TOTAL                       |  $1998.5  |  ⏱ 69.0   |                    |
+------------------------------------------------------------------------------
+
+-Presupuesto final: 1.5
+-Tiempo restante: 11.0

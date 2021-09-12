@@ -14,6 +14,6 @@ public class Main {
             boleteria.ofrecerA(u);
         }
 
-        System.out.println(DibujadorDeHomero.saludo());
+        System.out.println(DibujadorDeHomero.dibujarHomero());
     }
 }
