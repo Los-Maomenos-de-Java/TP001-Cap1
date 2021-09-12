@@ -69,4 +69,9 @@ public class Boleteria {
     	vendedor.mostrarItinerario();
     	vendedor.generarTicket(usuario);
     }
+    
+    public List<Ofertable> filtradorParaTest(Usuario usuario){
+    	ofertasOrdenadasPara(usuario);
+    	return ofertasFiltradasPara(usuario);
+    }
 }
