@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
     	String archivoUsuarios = "archivos/UsuariosSimpsonsReducido.txt";
     	List<Usuario> usuarios = ManejadorDeArchivos.leerUsuarios(archivoUsuarios);
+    	
     	System.out.println(DibujadorDeHomero.saludo());
         Boleteria boleteria = new Boleteria();
         

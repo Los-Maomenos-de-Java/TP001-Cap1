@@ -69,7 +69,7 @@ public class Vendedor {
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("\nNo tengo nada más para ofrecer.\n\nEste es tu itinerario:");
         Itinerario vendido = new Itinerario(this.ofertasVendidas);
-        System.out.println(vendido);
+        vendido.mostrar();
         System.out.println("Presioná Enter para continuar...");
         scan.nextLine();
         System.out.println("-----------------------------------------------------------------------------");
