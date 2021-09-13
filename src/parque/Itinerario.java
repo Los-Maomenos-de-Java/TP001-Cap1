@@ -33,16 +33,16 @@ public class Itinerario {
                 .forEach(promocion -> {
                     System.out.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
                             "- " + promocion.getNombre(),
-                            "  $" + promocion.getCosto(),
-                            "  ⏱ " + promocion.getTiempo(),
+                            "  $" + String.format("%.2f", promocion.getCosto()),
+                            "  ⏱ " + String.format("%.2f", promocion.getTiempo()),
                             "     " + promocion.getTipo().toString().charAt(0)
                                     + promocion.getTipo().toString().substring(1).toLowerCase());
                     promocion.getAtracciones().forEach(atraccion -> System.out.printf("|%-27.27s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "\t-" + atraccion.getNombre()
-                            , "  $" + atraccion.getCosto(), "", ""));
+                            , "  $" + String.format("%.2f",atraccion.getCosto()), "", ""));
                     System.out.printf("|%-27.27s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "\t-Descuento",
-                            "  $" + (promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum()),
+                            "  $" + String.format("%.2f",(promocion.getCosto() - promocion.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum())),
                             "", "");
                     System.out.print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
                 });
@@ -53,8 +53,8 @@ public class Itinerario {
                 .forEach(atraccion -> {
                     System.out.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
                             "- " + atraccion.getNombre(),
-                            "  $" + atraccion.getCosto(),
-                            "  ⏱ " + atraccion.getTiempo(),
+                            "  $" + String.format("%.2f",atraccion.getCosto()),
+                            "  ⏱ " + String.format("%.2f",atraccion.getTiempo()),
                             "     " + atraccion.getTipo().toString().charAt(0)
                                     + atraccion.getTipo().toString().substring(1).toLowerCase());
                     System.out.print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
@@ -63,7 +63,7 @@ public class Itinerario {
         var costoTotal = ofertas.stream().mapToDouble(Ofertable::getCosto).sum();
         var tiempoTotal = ofertas.stream().mapToDouble(Ofertable::getTiempo).sum();
 
-        System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "  $" + costoTotal, "  ⏱ " + tiempoTotal);
+        System.out.printf("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "  $" + String.format("%.2f",costoTotal), "  ⏱ " + String.format("%.2f",tiempoTotal));
 
         System.out.println("-----------------------------------------------------------------------------");
 

@@ -191,20 +191,20 @@ public class ManejadorDeArchivos {
                 .forEach(promocion -> {
                     salida.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
                             "- " + promocion.getNombre(),
-                            "  $" + promocion.getCosto(),
-                            "  ⏱ " + promocion.getTiempo(),
+                            "  $" + String.format("%.2f", promocion.getCosto()),
+                            "  ⏱ " + String.format("%.2f", promocion.getTiempo()),
                             "     " + promocion.getTipo().toString().charAt(0)
                                     + promocion.getTipo().toString().substring(1).toLowerCase());
                     promocion.getAtracciones().forEach(atraccion -> salida.printf("%-23.23s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "\t-" + atraccion.getNombre()
-                            , "  $" + atraccion.getCosto(), "", ""));
+                            , "  $" + String.format("%.2f", atraccion.getCosto()), "", ""));
                     salida.printf("%-23.23s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "\t-Descuento",
-                            "  $" + (promocion.getCosto() - promocion
+                            "  $" + String.format("%.2f", (promocion.getCosto() - promocion
                                     .getAtracciones()
                                     .stream()
                                     .mapToDouble(Atraccion::getCosto)
-                                    .sum()),
+                                    .sum())),
                             "", "");
                     salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
                 });
@@ -215,8 +215,8 @@ public class ManejadorDeArchivos {
                 .forEach(atraccion -> {
                     salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n",
                             "- " + atraccion.getNombre(),
-                            "  $" + atraccion.getCosto(),
-                            "  ⏱ " + atraccion.getTiempo(),
+                            "  $" + String.format("%.2f", atraccion.getCosto()),
+                            "  ⏱ " + String.format("%.2f", atraccion.getTiempo()),
                             "     " + atraccion.getTipo().toString().charAt(0)
                                     + atraccion.getTipo().toString().substring(1).toLowerCase());
                     salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
@@ -225,7 +225,7 @@ public class ManejadorDeArchivos {
         var costoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getCosto).sum();
         var tiempoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getTiempo).sum();
 
-        salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "- TOTAL", "  $" + costoTotal, "  ⏱ " + tiempoTotal, "");
+        salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "- TOTAL", "  $" + String.format("%.2f", costoTotal), "  ⏱ " + String.format("%.2f", tiempoTotal), "");
 
         salida.println("------------------------------------------------------------------------------");
 

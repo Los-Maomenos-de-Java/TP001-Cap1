@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e2c05a6a-1bbb-4193-afe5-3cb9717f52e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TP001-Cap1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TP001-Cap1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos/Eowyn.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos/Galadriel.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos/Gandalf.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos/Sam.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parque/Itinerario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parque/Itinerario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parque/ManejadorDeArchivos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parque/ManejadorDeArchivos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parque/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parque/Vendedor.java" afterDir="false" />

@@ -36,8 +36,8 @@ public class Vendedor {
             System.out.println("ATRACCION: " + ofertableSugerida.getNombre());
         }
 
-        System.out.println("\tCosto final: $" + ofertableSugerida.getCosto());
-        System.out.println("\tTiempo total requerido: " + ofertableSugerida.getTiempo());
+        System.out.println("\tCosto final: $" + String.format("%.2f", ofertableSugerida.getCosto()));
+        System.out.println("\tTiempo total requerido: " + String.format("%.2f", ofertableSugerida.getTiempo()));
 
         System.out.println("¿Qué te parece?\n¿Quieres comprar esta oferta? ( s / n ): ");
 
