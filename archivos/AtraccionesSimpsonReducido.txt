@@ -1,0 +1,23 @@
+Krusty Burguer,90,0.5,25,DEGUSTACION
+Taberna de Moe,50,4,5,DEGUSTACION
+El Holandés Errante,20,2,15,DEGUSTACION
+Land Lar Donuts,65,1.5,15,DEGUSTACION
+Planta Nuclear,230,6,20,ACCION
+El laboratorio del Dr Flink,156,6,15,ACCION
+Barney's Bowlarama ,233,4,30,ACCION
+Shelbyville,180,4,100,RECORRIDO
+Fábrica de Cajas,32,2,15,RECORRIDO
+La casita del árbol,10,1,5,RECORRIDO
+La cabaña de Willy,5,0.5,2,RECORRIDO
+Itchy & Scratchy,250,2,100,SHOW
+Estadio Duff: Los isotopos vs Shelbyville,250,3,150,SHOW
+Los Borbotones,150,1.5,20,SHOW
+Monorriel,100,3,50,MONTAÑA_RUSA
+El Calabozo del Androide,35,10,5,SHOP
+Kwik e Mart,55,2,10,SHOP
+Leftorium,33,2,3,SHOP
+La Casita del Horror,175,10,170,TERROR
+La Mansión de Burns,175,6,25,TERROR
+Cementerios de Springfield,150,5,200,TERROR
+Biblioteca de Springfield,10,6,87,CULTURAL
+Escuela Primaria,28,6,200,CULTURAL

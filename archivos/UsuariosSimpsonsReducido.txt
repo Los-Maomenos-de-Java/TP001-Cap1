@@ -1,0 +1,8 @@
+Homero Simpson,500,80,DEGUSTACION
+Lisa Simpson,100,40,CULTURAL
+Bart Simpson,60,60,ACCION
+Montgomery Burns,20000,120,TERROR
+Ned Flanders,666,120,RECORRIDO
+Milhouse Van Houten,80,40,MONTAÑA_RUSA
+Apu Nahasapeemapetilon,300,10,SHOP
+Bob Patiño,450,20,SHOW
