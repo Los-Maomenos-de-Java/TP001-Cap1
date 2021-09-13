@@ -162,9 +162,9 @@ public class ManejadorDeArchivos {
     }
 
     public static void generarTicket(Usuario usuario, List<Ofertable> ofertasCompradas) throws IOException {
-        File nuevoTicket = new File("archivos/" + usuario.getNombre() + ".txt");
+        File nuevoTicket = new File("archivos/salida/" + usuario.getNombre() + ".txt");
 
-        PrintWriter salida = new PrintWriter(new FileWriter("archivos/" + usuario.getNombre() + ".txt"));
+        PrintWriter salida = new PrintWriter(new FileWriter("archivos/salida/" + usuario.getNombre() + ".txt"));
 
         nuevoTicket.createNewFile();
 
@@ -175,8 +175,8 @@ public class ManejadorDeArchivos {
 
         salida.println("\n Datos del usuario: ");
         salida.println("- Nombre: " + usuario.getNombre());
-        salida.println("- Presupuesto inicial: " + usuario.getPresupuestoInicial());
-        salida.println("- Tiempo disponible: " + usuario.getTiempoInicial() + "\n");
+        salida.println("- Presupuesto inicial: " + String.format("%.2f", usuario.getPresupuestoInicial()));
+        salida.println("- Tiempo disponible: " + String.format("%.2f", usuario.getTiempoInicial()) + "\n");
 
         salida.println("------------------------------------------------------------------------------");
         salida.println("\t\t\tRESUMEN DE COMPRA DE " + usuario.getNombre().toUpperCase() + ":");
@@ -212,13 +212,15 @@ public class ManejadorDeArchivos {
         ofertasCompradas
                 .stream()
                 .filter(oferta -> !oferta.esPromocion())
-                .forEach(atraccion -> salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n",
-                        "- " + atraccion.getNombre(),
-                        "  $" + atraccion.getCosto(),
-                        "  ⏱ " + atraccion.getTiempo(),
-                        "     " + atraccion.getTipo().toString().charAt(0)
-                                + atraccion.getTipo().toString().substring(1).toLowerCase()));
-        salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
+                .forEach(atraccion -> {
+                    salida.printf("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n",
+                            "- " + atraccion.getNombre(),
+                            "  $" + atraccion.getCosto(),
+                            "  ⏱ " + atraccion.getTiempo(),
+                            "     " + atraccion.getTipo().toString().charAt(0)
+                                    + atraccion.getTipo().toString().substring(1).toLowerCase());
+                    salida.printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
+                });
 
         var costoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getCosto).sum();
         var tiempoTotal = ofertasCompradas.stream().mapToDouble(Ofertable::getTiempo).sum();
@@ -227,8 +229,8 @@ public class ManejadorDeArchivos {
 
         salida.println("------------------------------------------------------------------------------");
 
-        salida.println("\n-Presupuesto final: " + usuario.getPresupuestoActual());
-        salida.println("-Tiempo restante: " + usuario.getTiempoDisponible());
+        salida.println("\n-Presupuesto final: " + String.format("%.2f", usuario.getPresupuestoActual()));
+        salida.println("-Tiempo restante: " + String.format("%.2f", usuario.getTiempoDisponible()));
 
         salida.close();
     }

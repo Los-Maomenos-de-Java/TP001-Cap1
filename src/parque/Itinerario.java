@@ -50,17 +50,15 @@ public class Itinerario {
         ofertas
                 .stream()
                 .filter(oferta -> !oferta.esPromocion())
-                .forEach(atraccion -> System.out.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
-                        "- " + atraccion.getNombre(),
-                        "  $" + atraccion.getCosto(),
-                        "  ⏱ " + atraccion.getTiempo(),
-                        "     " + atraccion.getTipo().toString().charAt(0)
-                                + atraccion.getTipo().toString().substring(1).toLowerCase()))
-        ;
-        System.out.print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
-
-
-        System.out.println("-----------------------------------------------------------------------------");
+                .forEach(atraccion -> {
+                    System.out.printf("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n",
+                            "- " + atraccion.getNombre(),
+                            "  $" + atraccion.getCosto(),
+                            "  ⏱ " + atraccion.getTiempo(),
+                            "     " + atraccion.getTipo().toString().charAt(0)
+                                    + atraccion.getTipo().toString().substring(1).toLowerCase());
+                    System.out.print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n");
+                });
 
         var costoTotal = ofertas.stream().mapToDouble(Ofertable::getCosto).sum();
         var tiempoTotal = ofertas.stream().mapToDouble(Ofertable::getTiempo).sum();

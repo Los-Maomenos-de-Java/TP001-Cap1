@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2c05a6a-1bbb-4193-afe5-3cb9717f52e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP001-Cap1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TP001-Cap1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archivos/Eowyn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archivos/Galadriel.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archivos/Gandalf.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archivos/Sam.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parque/Itinerario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parque/Itinerario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parque/ManejadorDeArchivos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parque/ManejadorDeArchivos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parque/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parque/Vendedor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +63,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -64,7 +76,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="parque.Main" />
       <module name="TP001-Cap1" />
@@ -78,9 +90,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="atraccionesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TP001-Cap1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parque.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="parque" />
+      <option name="MAIN_CLASS_NAME" value="parque.atraccionesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="parque in TP001-Cap1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TP001-Cap1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parque.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="parque" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.parque in TP001-Cap1" />
+        <item itemvalue="JUnit.atraccionesTest" />
       </list>
     </recent_temporary>
   </component>

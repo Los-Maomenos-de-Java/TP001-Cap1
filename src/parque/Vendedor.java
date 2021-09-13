@@ -10,12 +10,13 @@ public class Vendedor {
     private Scanner scan = new Scanner(System.in);
 
     public void iniciarVenta(Usuario usuario) {
-        System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + usuario.getPresupuestoActual()
-                + " y " + usuario.getTiempoDisponible() + " horas disponibles\n");
+        System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + String.format("%.2f", usuario.getPresupuestoActual())
+                + " y " + String.format("%.2f", usuario.getTiempoDisponible()) + " horas disponibles\n");
     }
 
     public void continuarVenta(Usuario usuario) {
-        System.out.println("Ahora cuentas con: $" + usuario.getPresupuestoActual() + " y " + usuario.getTiempoDisponible()
+        System.out.println("Ahora cuentas con: $" + String.format("%.2f", usuario.getPresupuestoActual()) + " y "
+                + String.format("%.2f", usuario.getTiempoDisponible())
                 + " horas disponibles\n");
     }
 
