@@ -11,11 +11,11 @@ public class boleteriaTest {
 	public void testObtenerAtraccionPorNombre() {
 		new Boleteria();
 		
-		String nombre = "Luigi’s Pizza";
-		double costoVisita = 150.0;
-		double tiempoVisita = 2.0;
+		String nombre = "Krusty Burguer";
+		double costoVisita = 90.0;
+		double tiempoVisita = 0.5;
 		TipoDeAtraccion tipoAtraccion = TipoDeAtraccion.valueOf("DEGUSTACION");
-		int cupo = 10;
+		int cupo = 25;
 		
 		Atraccion atraccionPrueba = new Atraccion(nombre,costoVisita,tiempoVisita,tipoAtraccion,cupo);
 		
@@ -44,7 +44,8 @@ public class boleteriaTest {
 		Usuario usuario = new Usuario("Usuario De Prueba",50000.0,0.5,TipoDeAtraccion.valueOf("DEGUSTACION")); 
 		
 		List<Ofertable> ofertasFiltradasPorTiempo = boleteria.filtradorParaTest(usuario);
-		assertEquals(2,ofertasFiltradasPorTiempo.size()); //2 es la cantidad de atracciones que se pueden recorrer con solo media hora disponible
+		assertEquals(2,ofertasFiltradasPorTiempo.size()); 
+		//2 es la cantidad de atracciones que se pueden recorrer con solo media hora disponible en los archivos reducidos
 	}
 	
 	@Test
@@ -52,6 +53,7 @@ public class boleteriaTest {
 		Boleteria boleteria = new Boleteria();
 		Usuario usuarioConPlataYTiempo = new Usuario("Usuario De Prueba",500000000.0,500000000.0,TipoDeAtraccion.valueOf("DEGUSTACION"));
 		List<Ofertable> ofertasSinFiltro = boleteria.filtradorParaTest(usuarioConPlataYTiempo);
-		assertEquals(57,ofertasSinFiltro.size()); //57 es la cantidad de atracciones+promociones cargadas
+		assertEquals(29,ofertasSinFiltro.size()); 
+		//29 es la cantidad de atracciones+promociones cargadas en los archivos reducidos (57 en los archivos completos)
 	}
 }
