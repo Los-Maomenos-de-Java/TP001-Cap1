@@ -11,7 +11,7 @@ public class Vendedor {
 
     public void iniciarVenta(Usuario usuario) {
         System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + String.format("%.2f", usuario.getPresupuestoActual())
-                + " y " + String.format("%.2f", usuario.getTiempoDisponible()) + " horas disponibles\n");
+                + " y " + String.format("%.2f", usuario.getTiempoDisponible()) + " horas disponibles \nTu preferencia son las atracciones de: " + usuario.getTipoDeAtraccionPreferida().toString());
     }
 
     public void continuarVenta(Usuario usuario) {
@@ -26,6 +26,7 @@ public class Vendedor {
 
         if (ofertableSugerida.esPromocion()) {
             System.out.println("PROMOCION: " + ofertableSugerida.getNombre());
+            System.out.println("Tipo: " + ofertableSugerida.getTipo().toString());
             System.out.println("\tAtracciones incluidas:");
             String atracciones = "";
             for (Ofertable atraccion : ofertableSugerida.getAtracciones()) {
@@ -34,6 +35,7 @@ public class Vendedor {
             System.out.println(" \t" + atracciones);
         } else {
             System.out.println("ATRACCION: " + ofertableSugerida.getNombre());
+            System.out.println("Tipo: " + ofertableSugerida.getTipo().toString());
         }
 
         System.out.println("\tCosto final: $" + String.format("%.2f", ofertableSugerida.getCosto()));
