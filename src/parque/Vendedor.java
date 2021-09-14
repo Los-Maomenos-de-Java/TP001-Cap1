@@ -26,12 +26,14 @@ public class Vendedor {
 
         if (ofertableSugerida.esPromocion()) {
             System.out.println("PROMOCION: " + ofertableSugerida.getNombre());
-            System.out.println("Tipo: " + ofertableSugerida.getTipo().toString());
+            System.out.println("Tipo: " + ofertableSugerida.getTipo().toString() + "\n");
             System.out.println("\tAtracciones incluidas:");
             String atracciones = "";
             for (Ofertable atraccion : ofertableSugerida.getAtracciones()) {
-                atracciones += "\t" + atraccion.getNombre() + "\n\t";
+                atracciones += "\t" + atraccion.getNombre() + " $" + atraccion.getCosto() + "\n\t";
             }
+            atracciones += "\t" + "Descuento $" + String.format("%.2f", ofertableSugerida.getCosto()
+                    - ofertableSugerida.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum()) + "\n";
             System.out.println(" \t" + atracciones);
         } else {
             System.out.println("ATRACCION: " + ofertableSugerida.getNombre());
@@ -39,7 +41,7 @@ public class Vendedor {
         }
 
         System.out.println("\tCosto final: $" + String.format("%.2f", ofertableSugerida.getCosto()));
-        System.out.println("\tTiempo total requerido: " + String.format("%.2f", ofertableSugerida.getTiempo()));
+        System.out.println("\tTiempo total requerido: " + String.format("%.2f", ofertableSugerida.getTiempo()) + "\n");
 
         System.out.println("¿Qué te parece?\n¿Quieres comprar esta oferta? ( s / n ): ");
 

@@ -1,6 +1,0 @@
-Promo Fast Food,PromocionAbsoluta,Krusty Burguer-Land Lar Donuts-Taberna de Moe,50
-Promo Apocalipsis,PromocionPorcentual,Planta Nuclear-El laboratorio del Dr Flink,20
-Promo Paseo LowCost,PromocionAxB,Fábrica de Cajas-La casita del árbol-La cabaña de Willy,La casita del árbol
-Promo Borrachines,PromocionAxB,Krusty Burguer-Taberna de Moe-El Holandés Errante,Taberna de Moe
-Promo Minoria,PromocionPorcentual,El Calabozo del Androide-Leftorium,5
-Promo Solo Valientes,PromocionAbsoluta,La Casita del Horror-La Mansión de Burns-Cementerios de Springfield,100

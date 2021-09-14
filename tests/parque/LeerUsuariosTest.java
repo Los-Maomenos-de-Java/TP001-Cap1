@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 public class LeerUsuariosTest {
-	String archivoUsuarios = "archivos/usuarios.txt";
+	String archivoUsuarios = "archivos/archivosTests/usuarios.txt";
 	List<Usuario> usuarios = ManejadorDeArchivos.leerUsuarios(archivoUsuarios);
 
 	@Test

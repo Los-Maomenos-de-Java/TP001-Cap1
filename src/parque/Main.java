@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-    	String archivoUsuarios = "archivos/UsuariosSimpsonsReducido.txt";
+    	String archivoUsuarios = "archivos/UsuariosSimpsons.txt";
     	List<Usuario> usuarios = ManejadorDeArchivos.leerUsuarios(archivoUsuarios);
     	
     	System.out.println(DibujadorDeHomero.saludo());
