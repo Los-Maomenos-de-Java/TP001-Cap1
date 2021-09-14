@@ -13,8 +13,8 @@ public class generadorTicketTest {
 
 	@Test
 	public void testSiHomeroRespondeTodoQueSi() throws IOException {
-		List<String> file1 = Files.readAllLines(Paths.get("./archivos/test/HomeroSi.txt"));
-		List<String> file2 = Files.readAllLines(Paths.get("./archivos/test/HomeroSimpsonSalida.txt"));
+		List<String> file1 = Files.readAllLines(Paths.get("archivos/archivosTests/HomeroSi.txt"));
+		List<String> file2 = Files.readAllLines(Paths.get("archivos/archivosTests/HomeroSimpsonSalida.txt"));
 
 		assertEquals(file1.size(), file2.size()-2);
 
@@ -26,8 +26,8 @@ public class generadorTicketTest {
 	
 	@Test
 	public void testSiHomeroRespondeTodoQueNo() throws IOException {
-		List<String> file1 = Files.readAllLines(Paths.get("./archivos/test/HomeroNo.txt"));
-		List<String> file2 = Files.readAllLines(Paths.get("./archivos/test/HomeroSimpsonSalidaNo.txt"));
+		List<String> file1 = Files.readAllLines(Paths.get("archivos/archivosTests/HomeroNo.txt"));
+		List<String> file2 = Files.readAllLines(Paths.get("archivos/archivosTests/HomeroSimpsonSalidaNo.txt"));
 
 		assertEquals(file1.size(), file2.size()-2);
 
