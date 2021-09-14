@@ -2,72 +2,64 @@ package parque;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Itinerario {
-	private List<Ofertable> ofertas = new ArrayList<>();
+    private List<Ofertable> ofertas = new ArrayList<>();
 
-	public Itinerario(List<Ofertable> ofertasVendidas) {
-		ofertas.addAll(ofertasVendidas);
-	}
+    public Itinerario(List<Ofertable> ofertasVendidas) {
+        ofertas.addAll(ofertasVendidas);
+    }
 
-	/*
-	 * public List<Atraccion> getOfertas() { return this.ofertas .stream()
-	 * .map(Ofertable::getAtracciones) .flatMap(List::stream)
-	 * .collect(Collectors.toList()); }
-	 */
+    public void mostrar() {
+        System.out.println(this);
+    }
 
-	
-	public void mostrar() {
-		System.out.println(toString());
-	}
-	
-	@Override
-	public String toString() {
-		String salida = "\n\t\t\t\tATRACCIONES COMPRADAS: "
-				+ "\n-----------------------------------------------------------------------------\n"
-				+ String.format("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "        Atracciones", "   Costo",
-						"  Tiempo", " Tipo de Atracción")
-				+ "-----------------------------------------------------------------------------\n";
-		for (Ofertable oferta : ofertas) {
-			if (oferta.esPromocion()) {
-				salida += String.format("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n", "- " + oferta.getNombre(),
-						"  $" + String.format("%.2f", oferta.getCosto()),
-						"  ⏱ " + String.format("%.2f", oferta.getTiempo()),
-						"     " + oferta.getTipo().toString().charAt(0)
-								+ oferta.getTipo().toString().substring(1).toLowerCase());
-				for (Atraccion atraccion : oferta.getAtracciones()) {
-					salida += String.format("|%-27.27s |%-10.10s |%-10.10s |%-20.20s|%n",
-							"\t-" + atraccion.getNombre(), "  $" + String.format("%.2f", atraccion.getCosto()), "",
-							"");
-				}
-				salida += String.format("|%-27.27s |%-10.10s |%-10.10s |%-20.20s|%n", "\t-Descuento",
-						"  $" + String.format("%.2f", (oferta.getCosto()
-								- oferta.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum())),
-						"", "");
-				salida += "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
-			}
-		}
-		
-		for (Ofertable oferta : ofertas) {
-			if(!oferta.esPromocion()) {
-				salida += String.format("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n", "- " + oferta.getNombre(),
-						"  $" + String.format("%.2f", oferta.getCosto()),
-						"  ⏱ " + String.format("%.2f", oferta.getTiempo()),
-						"     " + oferta.getTipo().toString().charAt(0)
-								+ oferta.getTipo().toString().substring(1).toLowerCase());
-				salida += "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
-			}
-		}
-		
-		var costoTotal = ofertas.stream().mapToDouble(Ofertable::getCosto).sum();
-		var tiempoTotal = ofertas.stream().mapToDouble(Ofertable::getTiempo).sum();
+    @Override
+    public String toString() {
+        String salida = "\n\t\t\t\tATRACCIONES COMPRADAS: "
+                + "\n-----------------------------------------------------------------------------\n"
+                + String.format("|%-29.29s |%-10.10s |%-10.10s |%-20.20s|%n", "        Atracciones", "   Costo",
+                "  Tiempo", " Tipo de Atracción")
+                + "-----------------------------------------------------------------------------\n";
+        for (Ofertable oferta : ofertas) {
+            if (oferta.esPromocion()) {
+                salida += String.format("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n", "- " + oferta.getNombre(),
+                        "  $" + String.format("%.2f", oferta.getCosto()),
+                        "  ⏱ " + String.format("%.2f", oferta.getTiempo()),
+                        "     " + oferta.getTipo().toString().charAt(0)
+                                + oferta.getTipo().toString().substring(1).toLowerCase());
+                for (Atraccion atraccion : oferta.getAtracciones()) {
+                    salida += String.format("|%-27.27s |%-10.10s |%-10.10s |%-20.20s|%n",
+                            "\t-" + atraccion.getNombre(), "  $" + String.format("%.2f", atraccion.getCosto()), "",
+                            "");
+                }
+                salida += String.format("|%-27.27s |%-10.10s |%-10.10s |%-20.20s|%n", "\t-Descuento",
+                        "  $" + String.format("%.2f", (oferta.getCosto()
+                                - oferta.getAtracciones().stream().mapToDouble(Atraccion::getCosto).sum())),
+                        "", "");
+                salida += "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
+            }
+        }
 
-		salida += String.format("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "  $" + String.format("%.2f", costoTotal),
-				"  ⏱ " + String.format("%.2f", tiempoTotal));
+        for (Ofertable oferta : ofertas) {
+            if (!oferta.esPromocion()) {
+                salida += String.format("|%-29.29s |%-10.10s |%-9.9s |%-20.20s|%n", "- " + oferta.getNombre(),
+                        "  $" + String.format("%.2f", oferta.getCosto()),
+                        "  ⏱ " + String.format("%.2f", oferta.getTiempo()),
+                        "     " + oferta.getTipo().toString().charAt(0)
+                                + oferta.getTipo().toString().substring(1).toLowerCase());
+                salida += "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
+            }
+        }
 
-		salida += "-----------------------------------------------------------------------------\n";
-		
-		return salida;
-	}
+        var costoTotal = ofertas.stream().mapToDouble(Ofertable::getCosto).sum();
+        var tiempoTotal = ofertas.stream().mapToDouble(Ofertable::getTiempo).sum();
+
+        salida += String.format("%-30.30s |%-10.10s |%-10.10s|%n", "- TOTAL", "  $" + String.format("%.2f", costoTotal),
+                "  ⏱ " + String.format("%.2f", tiempoTotal));
+
+        salida += "-----------------------------------------------------------------------------\n";
+
+        return salida;
+    }
 }

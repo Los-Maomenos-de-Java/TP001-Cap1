@@ -9,8 +9,8 @@ public class PromocionAxB extends Promocion {
 
     public PromocionAxB(String nombre, String[] atraccionesGratis) {
         super(nombre);
-        if(atraccionesGratis.length == 0) {
-    		throw new Error("No se han cargado atracciones para descontar");
+        if (atraccionesGratis.length == 0) {
+            throw new Error("No se han cargado atracciones para descontar");
         }
         this.atraccionesGratis = Arrays.stream(atraccionesGratis)
                 .map(String::toLowerCase)
