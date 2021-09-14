@@ -5,4 +5,4 @@ Montgomery Burns,20000,120,TERROR
 Ned Flanders,666,120,RECORRIDO
 Milhouse Van Houten,80,40,MONTAÑA_RUSA
 Apu Nahasapeemapetilon,300,10,SHOP
-Bob Patiño,450,20,SHOW
+Cosme Fulanito,500,40,SHOW
