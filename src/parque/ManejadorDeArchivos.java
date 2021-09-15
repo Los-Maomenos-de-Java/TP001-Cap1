@@ -162,6 +162,10 @@ public class ManejadorDeArchivos {
     }
 
     public static void generarTicket(Usuario usuario, List<Ofertable> ofertasCompradas) throws IOException {
+        File directorio = new File("archivos/salida");
+
+        if (!directorio.exists()) directorio.mkdirs();
+
         File nuevoTicket = new File("archivos/salida/" + usuario.getNombre() + ".txt");
 
         PrintWriter salida = new PrintWriter(new FileWriter("archivos/salida/" + usuario.getNombre() + ".txt"));
